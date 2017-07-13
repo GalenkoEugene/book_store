@@ -8,6 +8,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'devise', '4.3.0'
 gem 'pg', '~> 0.18'
 gem 'rails', '5.1.2'
 # Use Puma as the app server
@@ -37,6 +38,7 @@ group :development do
   gem 'rubocop'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'haml-rails' # rake haml:erb2haml
   gem 'web-console', '>= 3.3.0' # Access an IRB console use <%= console %>
 end
 
