@@ -1,12 +1,13 @@
-!!!
+!!! 5
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
+    %meta{name: "viewport", content: "width=device-width"}
     %title BookStore
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
   %body
-    %p.notice= notice
-    %p.alert= alert
+    = render 'layouts/header'
     = yield
+    = render 'layouts/footer'

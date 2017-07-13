@@ -8,7 +8,9 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'bootstrap-sass', '3.3.7'
 gem 'devise', '4.3.0'
+gem 'font-awesome-rails', '4.7.0.2'
 gem 'pg', '~> 0.18'
 gem 'rails', '5.1.2'
 # Use Puma as the app server
@@ -21,6 +23,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
+gem 'jquery-rails', '4.3.1'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
