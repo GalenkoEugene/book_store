@@ -19,7 +19,7 @@
           %span{'aria-hidden': "true"} &times;
         %ul.nav.navbar-nav
           %li
-            %a{href: "#"} Home
+            = link_to 'Home', root_path
           %li
             %a{type: "button", 'data-toggle': "collapse", href: "#menu", 'aria-expanded': "false", 'aria-controls': "menu"} Shop
             %ul#menu.collapse.list-unstyled.pl-30.mb-10{'aria-expanded': "false"}
@@ -34,7 +34,7 @@
       .hidden-xs
         %ul.nav.navbar-nav
           %li
-            %a{href: "#"} Home
+            = link_to 'Home', root_path
           %li.dropdown
             %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"} Shop
             %ul.dropdown-menu
@@ -46,6 +46,6 @@
                 %a{href: "#"} Web design
               %li.divider{role: "separator"}
               %li
-                %a{href: "#"} Log out
+                = link_to 'Log out', destroy_user_session_path, :method => :delete, :data => { :confirm => 'Are you sure?' }  
           %li
             %a{href: "#"} My account
