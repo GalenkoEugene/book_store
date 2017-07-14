@@ -11,9 +11,9 @@ end
 gem 'bootstrap-sass', '3.3.7'
 gem 'devise', '4.3.0'
 gem 'font-awesome-rails', '4.7.0.2'
+gem 'omniauth-facebook', '4.0.0'
 gem 'pg', '~> 0.18'
 gem 'rails', '5.1.2'
-# Use Puma as the app server
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -21,7 +21,6 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'therubyracer', platforms: :ruby
 
 gem 'coffee-rails', '~> 4.2'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails', '4.3.1'
 # Use Redis adapter to run Action Cable in production
@@ -39,6 +38,7 @@ end
 group :development do
   gem 'haml-rails' # rake haml:erb2haml
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'pry-byebug', '3.4.2'
   gem 'rubocop'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
