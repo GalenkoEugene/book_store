@@ -38,4 +38,7 @@ en:
     sign_up: 'Sign up'
     back_to_store: "Back to Store"
     forgot_password: "Forgot password?"
-    resend_passwd_instruction: "Send me reset password instructions"
+    resend_passwd_instruction: "Email Instructions"
+    type_new_passwd: "Type a new Password"
+    confirm_passwd: "Confirm Password"
+    change: "Change"
