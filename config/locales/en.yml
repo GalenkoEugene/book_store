@@ -42,3 +42,12 @@ en:
     type_new_passwd: "Type a new Password"
     confirm_passwd: "Confirm Password"
     change: "Change"
+
+  number:
+    currency:
+       format:
+         unit: '€'
+         delimiter: ','
+         separator: '.'
+         precision: 2
+         format: '%u%n'

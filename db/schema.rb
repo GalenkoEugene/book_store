@@ -10,27 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170714185126) do
+ActiveRecord::Schema.define(version: 20170717115126) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "author_books", force: :cascade do |t|
+    t.bigint "author_id"
+    t.bigint "book_id"
+    t.index ["author_id"], name: "index_author_books_on_author_id"
+    t.index ["book_id"], name: "index_author_books_on_book_id"
+  end
 
   create_table "authors", force: :cascade do |t|
     t.string "name"
   end
 
-  create_table "authors_books", force: :cascade do |t|
-    t.bigint "author_id"
-    t.bigint "book_id"
-    t.index ["author_id"], name: "index_authors_books_on_author_id"
-    t.index ["book_id"], name: "index_authors_books_on_book_id"
-  end
-
   create_table "books", force: :cascade do |t|
-    t.string "name"
-    t.string "file"
+    t.string "title"
+    t.string "img_url"
     t.decimal "price", precision: 8, scale: 2
-    t.integer "amount"
     t.text "description"
     t.date "published_at"
     t.string "dimension"
@@ -58,6 +57,6 @@ ActiveRecord::Schema.define(version: 20170714185126) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "authors_books", "authors"
-  add_foreign_key "authors_books", "books"
+  add_foreign_key "author_books", "authors"
+  add_foreign_key "author_books", "books"
 end
