@@ -31,7 +31,7 @@
 
 en:
   button:
-    nome: 'Home'
+    home: 'Home'
     log_out: 'Log out'
     log_in: 'Log in'
     my_account: 'My account'

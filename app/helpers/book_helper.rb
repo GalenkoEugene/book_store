@@ -5,10 +5,6 @@ module BookHelper
     @book.authors.map(&:name).join(', ')
   end
 
-  def publication_year
-    @book.published_at.year
-  end
-
   def dimension
     "H:#{@book.height}\" x W:#{@book.weight}\"" \
     " x D:#{@book.depth}\", where ” - inches"
