@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170717115126) do
+ActiveRecord::Schema.define(version: 20170718113103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,14 +28,15 @@ ActiveRecord::Schema.define(version: 20170717115126) do
 
   create_table "books", force: :cascade do |t|
     t.string "title"
-    t.string "img_url"
     t.decimal "price", precision: 8, scale: 2
     t.text "description"
-    t.date "published_at"
-    t.string "dimension"
     t.string "materials"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "height", precision: 4, scale: 1
+    t.decimal "weight", precision: 4, scale: 1
+    t.decimal "depth", precision: 4, scale: 1
+    t.integer "published_at"
   end
 
   create_table "users", force: :cascade do |t|
@@ -53,6 +54,8 @@ ActiveRecord::Schema.define(version: 20170717115126) do
     t.datetime "updated_at", null: false
     t.string "provider"
     t.string "uid"
+    t.string "name"
+    t.string "image"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -32,17 +32,25 @@ gem 'jquery-rails', '4.3.1'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
-  gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'pry-byebug', '3.4.2'
+  gem 'rspec-rails', '~> 3.6.0'
+  gem 'factory_girl_rails', '~> 4.8.0'
 end
 
 group :development do
   gem 'haml-rails' # rake haml:erb2haml
   gem 'listen', '>= 3.0.5', '< 3.2'
-  gem 'pry-byebug', '3.4.2'
+
   gem 'rubocop'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0' # Access an IRB console use <%= console %>
+end
+
+group :test do
+  gem 'shoulda-matchers', '~> 3.1.2'
+  gem 'database_cleaner'
+  gem 'ffaker', '~> 2.6.0'
 end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

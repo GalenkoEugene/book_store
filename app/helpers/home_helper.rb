@@ -18,6 +18,6 @@ module HomeHelper
   private
 
   def li(teg)
-    "<li>#{ teg }</li>".html_safe
+    "<li>#{teg}</li>".html_safe
   end
 end

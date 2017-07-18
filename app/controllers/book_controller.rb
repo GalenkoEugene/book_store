@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
+# book
 class BookController < ApplicationController
-  # before_action :get_book, only: [:show]
+  # before_action :book, only: [:show]
 
   def index
     @books = Book.all
@@ -13,7 +14,7 @@ class BookController < ApplicationController
 
   private
 
-  def get_book
+  def book
     @book = Book.find(params[:id])
   end
 
