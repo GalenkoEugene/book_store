@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'ffaker'
-
 FactoryGirl.define do
   factory :book do
     title   FFaker::Book.title
@@ -12,5 +11,6 @@ FactoryGirl.define do
     weight  2.0
     depth   0.8
     materials 'paper, silk'
+    category_id 1
   end
 end

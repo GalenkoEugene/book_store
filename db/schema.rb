@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170718113103) do
+ActiveRecord::Schema.define(version: 20170719105521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,12 @@ ActiveRecord::Schema.define(version: 20170718113103) do
     t.decimal "weight", precision: 4, scale: 1
     t.decimal "depth", precision: 4, scale: 1
     t.integer "published_at"
+    t.bigint "category_id", null: false
+    t.index ["category_id"], name: "index_books_on_category_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "type_of"
   end
 
   create_table "users", force: :cascade do |t|
@@ -62,4 +68,5 @@ ActiveRecord::Schema.define(version: 20170718113103) do
 
   add_foreign_key "author_books", "authors"
   add_foreign_key "author_books", "books"
+  add_foreign_key "books", "categories"
 end
