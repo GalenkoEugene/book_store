@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'ffaker'
+
 FactoryGirl.define do
   factory :book do
     title   FFaker::Book.title

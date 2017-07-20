@@ -7,7 +7,7 @@ Book.delete_all
 Category.delete_all
 
 authors, books = [], []
-type_of =['Mobile development', 'Photo', 'Web design', 'Web development']
+type_of = ['Mobile development', 'Photo', 'Web design', 'Web development']
 
 type_of.each{ |type| Category.create(type_of: type) }
 

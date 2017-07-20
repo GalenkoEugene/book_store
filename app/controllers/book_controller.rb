@@ -2,20 +2,20 @@
 
 # book
 class BookController < ApplicationController
-  # before_action :book, only: [:show]
+  before_action :book, only: [:show]
 
   def index
     @books = Book.all
   end
 
   def show
-    @book = Book.includes(:authors).first
+    redirect_to root_url, alert: 'No such book.' unless @book
   end
 
   private
 
   def book
-    @book = Book.find(params[:id])
+    @book = Book.find_by_id(params[:id])
   end
 
   def book_params
