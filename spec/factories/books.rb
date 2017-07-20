@@ -11,6 +11,6 @@ FactoryGirl.define do
     weight  2.0
     depth   0.8
     materials 'paper, silk'
-    category_id 1
+    category_id { FactoryGirl.create(:category).id }
   end
 end

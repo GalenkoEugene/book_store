@@ -9,7 +9,7 @@ class BookController < ApplicationController
   end
 
   def show
-    @book = Book.first
+    @book = Book.includes(:authors).first
   end
 
   private
