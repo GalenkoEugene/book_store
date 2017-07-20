@@ -16,16 +16,21 @@ type_of.each{ |type| Category.create(type_of: type) }
 35.times do
   books << {
     title: FFaker::Book.title,
-    price: sprintf("%0.2f", rand(5..700.0)),
+    price: sprintf('%0.2f', rand(5..700.0)),
     description: FFaker::Book.description,
     published_at: rand(1900..2017),
-    height: sprintf("%0.1f", rand(0..9.0)),
-    weight: sprintf("%0.1f", rand(0..9.0)),
-    depth: sprintf("%0.1f", rand(0..9.0)),
+    height: sprintf('%0.1f', rand(0..9.0)),
+    weight: sprintf('%0.1f', rand(0..9.0)),
+    depth: sprintf('%0.1f', rand(0..9.0)),
     materials: FFaker::Lorem.words(rand(1..5)).join(', '),
-    category_id: rand(1..4)
+    category_id: rand(1..type_of.size)
   }
 end
 
 authors_in_db = Author.create!(authors)
-books.size.times { |item| authors_in_db.sample.books.create!(books[item]) }
+
+books.size.times do |item|
+  new_book = authors_in_db.sample.books.create!(books[item])
+  new_book.authors.create!(name: FFaker::Book.author)
+  new_book.authors << authors_in_db.sample
+end
