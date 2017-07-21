@@ -15,6 +15,10 @@ module HomeHelper
     end
   end
 
+  def active(index)
+    'active' if index == 0
+  end
+
   private
 
   def li(teg)
