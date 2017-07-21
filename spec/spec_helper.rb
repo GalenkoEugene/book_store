@@ -1,4 +1,6 @@
+# frozen_string_literal: true
 
+require 'capybara/rspec'
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
@@ -10,10 +12,7 @@ RSpec.configure do |config|
   end
 
   config.shared_context_metadata_behavior = :apply_to_host_groups
-
-  if config.files_to_run.one?
-    config.default_formatter = 'doc'
-  end
+  config.default_formatter = 'doc' if config.files_to_run.one?
 
 =begin
   config.filter_run_when_matching :focus
@@ -26,7 +25,6 @@ RSpec.configure do |config|
   # Run specs in random order to surface order dependencies. --seed 1234
   config.order = :random
   #
-
   Kernel.srand config.seed
 =end
 
