@@ -6,11 +6,11 @@
           %li
             = link_to t('button.home'), root_path, class: 'nav-link'
           %li
-            %a.nav-link{href: "#"} Shop
+            = link_to t('button.shop'), '#', class: 'nav-link'
           %li
-            %a.nav-link{href: "#"} Orders
+            = link_to t('button.orders'), '#', class: 'nav-link' if user_signed_in?
           %li
-            %a.nav-link{href: "#"} Settings
+            = link_to t('button.settings'), '#', class: 'nav-link' if user_signed_in?
       .col-sm-3
         %p.general-nav-mail support@bookstore.com
         %p.general-nav-number (555)-555-5555
