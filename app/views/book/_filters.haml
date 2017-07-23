@@ -1,0 +1,12 @@
+%a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
+  = t('button.newest_first')
+  %i.fa.fa-angle-down.dropdown-icon.pull-right
+%ul.dropdown-menu
+  %li
+    %a{href: "#"}= t('button.newest_first')
+  %li
+    %a{href: "#"}= t('button.popular_first')
+  %li
+    %a{href: "#"}= t('button.low_to_hight')
+  %li
+    %a{href: "#"}= t('button.hight_to_low')

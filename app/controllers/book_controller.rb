@@ -5,7 +5,8 @@ class BookController < ApplicationController
   before_action :book, only: [:show]
 
   def index
-    @books = Book.all
+    @books = Book.includes(:authors).limit 12
+    @categories = Category.includes(:books).all
   end
 
   def show

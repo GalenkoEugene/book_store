@@ -1,0 +1,24 @@
+#slider.carousel.slide{'data-ride': "carousel"}
+  %ol.carousel-indicators
+    - @latest_books.each_index do |index|
+      %li{'data-target': "#slider", 'data-slide-to': "{index}", class: "#{active(index)}"}
+  .carousel-inner{role: "listbox"}
+    - @latest_books.each_with_index do |fresh_book, index|
+      .item{class: "#{active(index)}"}
+        .row
+          .col-sm-5
+            .general-img-wrap
+              %img.img-shadow.general-thumbnail-img{src: "http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
+          .col-sm-7
+            .mb-60
+              %h1= fresh_book.title
+              %p.lead= fresh_book.description
+              %p.lead.small= authors_to_list(fresh_book)
+              .general-align
+                %button.btn.btn-primary= t('button.by_now')
+  %a.left.carousel-control{href: "#slider", role: "button", 'data-slide': "prev"}
+    %span.icon-prev{'aria-hidden': "true"}
+    %span.sr-only= t('page.home.carusel.prev')
+  %a.right.carousel-control{href: "#slider", role: "button", 'data-slide': "next"}
+    %span.icon-next{'aria-hidden': "true"}
+    %span.sr-only= t('page.home.carusel.next')

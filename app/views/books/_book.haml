@@ -1,0 +1,15 @@
+.col-xs-6.col-sm-3
+  .general-thumb-wrap
+    .thumbnail.general-thumbnail
+      %img.img-shadow.general-thumbnail-img{src: "https://d31wxntiwn0x96.cloudfront.net/rzgade/productimages/1276.jpg?width=400&height=400&etag=%22a2ebd1488b087bf0e6db43ee8bae0634%22", alt: "design-book"}
+      .thumb-hover
+        .general-thumb-link-wrap
+          = link_to book_path(book), class: 'thumb-hover-link' do
+            %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
+          %a.thumb-hover-link{href: "#"}
+            %i.fa.fa-shopping-cart.thumb-icon
+  .general-thumb-info
+    %p.title= book.title
+    %p.font-16.in-gold-500= book.price
+    %span.divider-sm
+    %p.lead.small= authors_to_list(book)

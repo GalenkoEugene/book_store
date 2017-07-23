@@ -20,12 +20,22 @@ en:
     log_in: 'Log in'
     my_account: 'My account'
     sign_up: 'Sign up'
-    back_to_store: "Back to Store"
-    forgot_password: "Forgot password?"
-    resend_passwd_instruction: "Email Instructions"
-    type_new_passwd: "Type a new Password"
-    confirm_passwd: "Confirm Password"
-    change: "Change"
+    back_to_store: 'Back to Store'
+    forgot_password: 'Forgot password?'
+    resend_passwd_instruction: 'Email Instructions'
+    type_new_passwd: 'Type a new Password'
+    confirm_passwd: 'Confirm Password'
+    change: 'Change'
+    by_now: 'Buy Now'
+    back_to_results: 'Back to results'
+    add_to_cart: 'Add to Cart'
+    read_more: 'Read More'
+    view_more: 'View More'
+    all: 'All'
+    newest_first: 'Newest first'
+    popular_first: 'Popular first'
+    low_to_hight: 'Price: Low to hight'
+    hight_to_low: 'Price: Hight to low'
 
   number:
     currency:
@@ -35,3 +45,24 @@ en:
          separator: '.'
          precision: 2
          format: '%u%n'
+
+  page:
+    home:
+      carusel:
+        prev: 'Previous'
+        next: 'Next'
+      greeting: 'Welcome to our amazing Bookstore!'
+      text: 'We pore through hundreds of new books each month and select the five best we can find to share with our members.'
+      best_sellers: 'Best Sellers'
+
+    book:
+      show:
+        description: 'Description'
+        materials: 'Materials'
+        dimension: 'Dimensions'
+        published_at: 'Year of publication'
+
+      index:
+        by_category: 'Filter by category'
+        sort_by: 'Sort by'
+
