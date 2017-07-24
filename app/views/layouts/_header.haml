@@ -6,7 +6,7 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      %a.navbar-brand Bookstore
+      %a.navbar-brand= t('header.logo')
       %a.shop-link.pull-right.visible-xs{href: "#"}
         %span.shop-icon
           %span.shop-quantity 3
@@ -21,11 +21,9 @@
           %li
             = link_to t('button.home'), root_path
           %li
-            %a{type: "button", 'data-toggle': "collapse", href: "#menu", 'aria-expanded': "false", 'aria-controls': "menu"} Shop
+            %a{type: "button", 'data-toggle': "collapse", href: "#menu", 'aria-expanded': "false", 'aria-controls': "menu"}= t('header.shop')
             %ul#menu.collapse.list-unstyled.pl-30.mb-10{'aria-expanded': "false"}
-              - @categories.each do |category|
-                %li
-                  %a.collapse-link{href: '#'}= category.type_of
+              = render 'layouts/categories'
           = log_in_up_helper
           = log_out_helper
       .hidden-xs
@@ -33,10 +31,8 @@
           %li
             = link_to t('button.home'), root_path
           %li.dropdown
-            %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"} Shop
+            %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}= t('header.shop')
             %ul.dropdown-menu
-              - @categories.each do |category|
-                %li
-                  %a{href: "#"}= category.type_of
+              = render 'layouts/categories'
               = log_out_helper
           = log_in_up_helper

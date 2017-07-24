@@ -37,6 +37,10 @@ en:
     low_to_hight: 'Price: Low to hight'
     hight_to_low: 'Price: Hight to low'
 
+  header:
+    logo: 'Bookstore'
+    shop: 'Shop'
+
   number:
     currency:
        format:
