@@ -2,7 +2,7 @@
 
 Rails.application.routes.draw do
   root to: 'home#index'
-  resources 'book'
+  resources 'book', only: [:show, :index]
   match '/catalog', to: 'book#index', via: 'get'
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 end

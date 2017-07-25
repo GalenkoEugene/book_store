@@ -3,12 +3,12 @@
 # book
 class BookController < ApplicationController
   before_action :book, only: [:show]
+  before_action :categories
   respond_to :html, :js, only: [:index]
 
   def index
     @category_id = params[:category]
     @books = Book.includes(:authors).by_category(params[:category]).page(params[:page])
-    @categories = Category.includes(:books).all
   end
 
   def show
