@@ -1,0 +1,7 @@
+$('#books-container').append('<%= j(render @books) %>');
+
+<% if @books.last_page? %>
+  $('#load-more-books').hide();
+<% else %>
+  $('#load-more-books').attr('href', '<%= catalog_path(page: (@books.current_page+1)) %>');
+<% end %>

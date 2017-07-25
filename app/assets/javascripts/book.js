@@ -32,4 +32,5 @@ $(document).ready(function() {
         amount += 1
         quantity.val(amount);
     });
+
 });

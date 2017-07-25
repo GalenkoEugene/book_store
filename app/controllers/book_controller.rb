@@ -3,9 +3,10 @@
 # book
 class BookController < ApplicationController
   before_action :book, only: [:show]
+  respond_to :html, :js, only: [:index]
 
   def index
-    @books = Book.includes(:authors).limit 12
+    @books = Book.includes(:authors).page(params[:page])
     @categories = Category.includes(:books).all
   end
 
