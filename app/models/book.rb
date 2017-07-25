@@ -21,6 +21,10 @@ class Book < ApplicationRecord
   validates_length_of :description, in: 5..2000
   belongs_to :category
 
+  def self.by_category(cat_id)
+    cat_id ? where('category_id = ?', cat_id) : unscoped
+  end
+
   def break_if_many_authors
     throw :abort if self.authors.size > 1
   end

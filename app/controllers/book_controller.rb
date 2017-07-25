@@ -6,7 +6,8 @@ class BookController < ApplicationController
   respond_to :html, :js, only: [:index]
 
   def index
-    @books = Book.includes(:authors).page(params[:page])
+    @category_id = params[:category]
+    @books = Book.includes(:authors).by_category(params[:category]).page(params[:page])
     @categories = Category.includes(:books).all
   end
 

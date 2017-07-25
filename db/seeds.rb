@@ -13,9 +13,9 @@ type_of.each{ |type| Category.create(type_of: type) }
 
 15.times { authors << { name: FFaker::Book.author } }
 
-35.times do
+95.times do |item|
   books << {
-    title: FFaker::Book.title,
+    title: FFaker::Book.title + item.to_s,
     price: sprintf('%0.2f', rand(5..700.0)),
     description: FFaker::Book.description,
     published_at: rand(1900..2017),
