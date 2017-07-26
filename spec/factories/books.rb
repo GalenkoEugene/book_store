@@ -4,7 +4,7 @@ require 'ffaker'
 
 FactoryGirl.define do
   factory :book do
-    title   FFaker::Book.title
+    sequence(:title)  { |i| FFaker::Book.title + i.to_s }
     price   35.00
     description FFaker::Book.description
     published_at 2015

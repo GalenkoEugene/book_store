@@ -3,10 +3,10 @@
   %i.fa.fa-angle-down.dropdown-icon.pull-right
 %ul.dropdown-menu
   %li
-    %a{href: "#"}= t('button.newest_first')
+    = link_to t('button.newest_first'), catalog_path(category: @category_id, filter: :newest)
   %li
-    %a{href: "#"}= t('button.popular_first')
+    = link_to t('button.popular_first'), catalog_path(category: @category_id, filter: :popular)
   %li
-    %a{href: "#"}= t('button.low_to_hight')
+    = link_to t('button.low_to_hight'), catalog_path(category: @category_id, filter: :up)
   %li
-    %a{href: "#"}= t('button.hight_to_low')
+    = link_to t('button.hight_to_low'), catalog_path(category: @category_id, filter: :down)
