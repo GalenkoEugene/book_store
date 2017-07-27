@@ -14,7 +14,7 @@ RSpec.describe HomeHelper, type: :helper do
 
     (1..6).to_a.each do |index|
       it "return false or nil for all except first index e.g.#{index}" do
-        expect(helper.active('')).to be_falsey
+        expect(helper.active(index)).to be_falsey
       end
     end
   end

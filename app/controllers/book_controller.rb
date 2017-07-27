@@ -7,8 +7,9 @@ class BookController < ApplicationController
   respond_to :html, :js, only: [:index]
 
   def index
-    @category_id = params[:category]
-    @books = Book.includes(:authors).by_category(params[:category]).page(params[:page])
+    filters
+    books = Book.by_category(params[:category]).includes(:authors)
+    @books = BooksQuery.new(books).run(params[:filter]).page(params[:page])
   end
 
   def show
@@ -19,6 +20,11 @@ class BookController < ApplicationController
 
   def book
     @book = Book.find_by_id(params[:id])
+  end
+
+  def filters
+    @category_id = params[:category]
+    @filter = params[:filter]
   end
 
   def book_params

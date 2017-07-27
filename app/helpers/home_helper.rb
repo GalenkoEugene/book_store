@@ -16,7 +16,7 @@ module HomeHelper
   end
 
   def active(index)
-    'active' if index == 0
+    'active' if index.zero?
   end
 
   private
