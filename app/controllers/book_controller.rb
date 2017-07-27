@@ -10,6 +10,7 @@ class BookController < ApplicationController
     filters
     books = Book.by_category(params[:category]).includes(:authors)
     @books = BooksQuery.new(books).run(params[:filter]).page(params[:page])
+    @order_item = current_order.order_items.new
   end
 
   def show

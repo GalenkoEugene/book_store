@@ -5,6 +5,7 @@ class Book < ApplicationRecord
 
   has_many :author_books, dependent: :destroy
   has_many :authors, through: :author_books
+  has_many :order_items
 
   validates :title, :price, :description,
             :published_at, :height, :weight, :depth,
@@ -19,6 +20,7 @@ class Book < ApplicationRecord
   validates_length_of :title, maximum: 120
   validates_length_of :materials, maximum: 80
   validates_length_of :description, in: 5..2000
+
   belongs_to :category
 
   def self.by_category(cat_id)

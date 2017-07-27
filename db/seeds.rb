@@ -5,6 +5,7 @@ AuthorBook.delete_all
 Author.delete_all
 Book.delete_all
 Category.delete_all
+OrderStatus.delete_all
 
 authors, books = [], []
 type_of = ['Mobile development', 'Photo', 'Web design', 'Web development']
@@ -34,3 +35,6 @@ books.size.times do |item|
   new_book.authors.create!(name: FFaker::Book.author)
   new_book.authors << authors_in_db.sample
 end
+
+statuses = %w[in_progress in_queue in_delivery delivered canceled]
+statuses.each { |status| OrderStatus.create(name: status) }
