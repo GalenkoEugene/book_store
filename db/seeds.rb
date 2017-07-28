@@ -6,6 +6,8 @@ Author.delete_all
 Book.delete_all
 Category.delete_all
 OrderStatus.delete_all
+Order.delete_all
+OrderItem.delete_all
 
 authors, books = [], []
 type_of = ['Mobile development', 'Photo', 'Web design', 'Web development']
@@ -24,7 +26,7 @@ type_of.each{ |type| Category.create(type_of: type) }
     weight: sprintf('%0.1f', rand(0..9.0)),
     depth: sprintf('%0.1f', rand(0..9.0)),
     materials: FFaker::Lorem.words(rand(1..5)).join(', '),
-    category_id: rand(1..type_of.size)
+    category_id: Category.all.sample.id
   }
 end
 
@@ -38,3 +40,6 @@ end
 
 statuses = %w[in_progress in_queue in_delivery delivered canceled]
 statuses.each { |status| OrderStatus.create(name: status) }
+
+order = Order.create!(order_status_id: OrderStatus.first.id, total: 33.33, subtotal: 33.33)
+OrderItem.create!(total_price: 66.66, quantity: 2, book_id: Book.last.id, unit_price: 33.33, order_id: order.id)

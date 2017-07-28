@@ -3,7 +3,6 @@
 # book
 class BookController < ApplicationController
   before_action :book, only: [:show]
-  before_action :categories
   respond_to :html, :js, only: [:index]
 
   def index

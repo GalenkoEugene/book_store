@@ -69,4 +69,10 @@ en:
       index:
         by_category: 'Filter by category'
         sort_by: 'Sort by'
-
+  cart:
+    cart: 'Cart'
+    product: 'Product'
+    price: 'Price'
+    quantity: 'Quantity'
+    subtotal: 'SubTotal'
+    checkout: 'Checkout'
