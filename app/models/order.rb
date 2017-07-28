@@ -13,7 +13,7 @@ class Order < ApplicationRecord
   private
 
   def set_order_status
-    self.order_status_id = 1
+    self.order_status_id = OrderStatus.find_or_create_by(name: 'in_progress')
   end
 
   def update_subtotal
