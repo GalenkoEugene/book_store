@@ -1,7 +1,7 @@
 %main.container.general-main-wrap
   %h1.general-title-margin= t('cart.cart')
   .visible-xs
-    = render 'xs_order_items', locals: @order_items
+    = render 'carts/xs_order_items', locals: @order_items
   .hidden-xs
     %table.table.table-hover
       %tr.no-hover
@@ -15,6 +15,6 @@
         %th.col-total
           %span.in-grey-600= t('cart.subtotal')
         %th.col-close
-      = render 'order_items', locals: @order_items
-  = render 'order_summary'
+      = render 'carts/order_items', locals: @order_items
+  = render 'carts/order_summary'
   %button.btn.btn-default.mb-20.hidden-xs.center-block= t('cart.checkout')

@@ -17,5 +17,5 @@
     %td
       %span.font-16.in-gold-500= number_to_currency(order_item.total_price)
     %td
-      %button.close.general-cart-close{type: "button", 'aria-label': "Close"}
+      = button_to order_item, { data: { confirm: "Are you sure you wish to delete the book '#{order_item.book.title}' from your cart?" }, method: :delete, remote: true, class: "close general-cart-close", 'aria-label': 'Close' } do
         %span{'aria-hidden': "true"} &times;

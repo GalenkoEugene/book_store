@@ -13,6 +13,7 @@ class BookController < ApplicationController
   end
 
   def show
+    @order_item = current_order.order_items.new
     redirect_to root_url, alert: 'No such book.' unless @book
   end
 

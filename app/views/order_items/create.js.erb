@@ -1,0 +1,5 @@
+<% if @order.errors.any? || @order_item.errors.any? %>
+alert('not valid.')
+<% else %>
+  $('span.shop-icon').html("<%= j(shop_icon_quantity(current_order.order_items.size.to_s)) %>")
+<% end %>

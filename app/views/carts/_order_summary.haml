@@ -2,28 +2,28 @@
   .row
     .col-sm-4
       .input-group.general-input-group
-        %label.input-label Enter Your Coupon Code
+        %label.input-label= t('cart.coupon')
         %input.form-control.mb-30{type: "text", placeholder: "Enter Your Coupon Code "}
         %div
-          %button.btn.btn-primary.mr-5.mb-15.visible-xs-inline-block Apply Coupon
-          %button.btn.btn-primary.mb-15.res-block Update cart
+          %button.btn.btn-primary.mr-5.mb-15.visible-xs-inline-block= t('cart.apply_coupon')
+          %button.btn.btn-primary.mb-15.res-block= t('cart.update')
     .col-sm-8
       .res-mr-200.text-center.general-text-right
-        %p.in-gold-500.font-18 Order Summary
+        %p.in-gold-500.font-18= t('cart.summary')
         %table.general-summary-table.general-summary-table-right.general-text-right
           %tr
             %td
-              %p.font-16 Subtotal:
+              %p.font-16= t('cart.subtotal')+':'
             %td
-              %p.font-16 €117.69
+              %p.font-16= number_to_currency current_order.subtotal
           %tr
             %td
-              %p.font-16 Coupon:
+              %p.font-16= t('cart.coupon')+':'
             %td
               %p.font-16 €0.00
           %tr
             %td
-              %strong.font-16 Order Total:
+              %strong.font-16= t('cart.total')+':'
             %td
-              %strong.font-16 €117.69
+              %strong.font-16= number_to_currency current_order.total || '--'
         %button.btn.btn-default.mb-20.visible-xs-inline-block= t('cart.checkout')

@@ -11,8 +11,8 @@ RSpec.describe Order, type: :model do
   end
 
   it 'set order status before create' do
-    order = subject.send(:set_order_status)
-    expect(order.name).to eq 'in_progress'
+    status_id = subject.send(:set_order_status)
+    expect(OrderStatus.find(status_id).name).to eq 'in_progress'
   end
 
   it 'update subtotal before save' do

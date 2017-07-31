@@ -17,7 +17,6 @@ RSpec.feature 'Book page', type: :feature do
     it { expect(subject).to have_content @book.title }
     it { expect(subject).to have_content @book.materials }
     it { expect(subject).to have_content @book.published_at }
-    it { expect(subject).to have_content 'Add to Cart' }
 
     # context 'short description' do
     #   it "'Read More' button absent", js: true do
