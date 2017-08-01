@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Order, type: :model do
   it { expect(subject).to have_many :order_items }
   it { expect(subject).to belong_to :order_status }
+  it { expect(subject).to belong_to :coupon }
 
   it 'set order status before create' do
     subject.order_status_id= FactoryGirl.create(:order_status).id

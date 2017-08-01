@@ -8,6 +8,7 @@ Category.delete_all
 OrderStatus.delete_all
 Order.delete_all
 OrderItem.delete_all
+Coupon.delete_all
 
 authors, books = [], []
 type_of = ['Mobile development', 'Photo', 'Web design', 'Web development']
@@ -43,3 +44,7 @@ statuses.each { |status| OrderStatus.create(name: status) }
 
 order = Order.create!(order_status_id: OrderStatus.first.id, total: 33.33, subtotal: 33.33)
 OrderItem.create!(total_price: 66.66, quantity: 2, book_id: Book.last.id, unit_price: 33.33, order_id: order.id)
+
+(1..7).each do |coupon|
+  Coupon.create(name: "D1234567890000#{coupon}", value: "#{coupon}.00".to_f)
+end

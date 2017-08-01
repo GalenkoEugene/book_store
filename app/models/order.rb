@@ -2,6 +2,7 @@
 
 class Order < ApplicationRecord
   belongs_to :order_status
+  belongs_to :coupon, optional: true
   has_many :order_items
   before_validation :set_order_status, on: :create
   before_save :update_subtotal, :update_total
@@ -11,7 +12,11 @@ class Order < ApplicationRecord
   end
 
   def total
-    subtotal - coupon
+    subtotal - discount
+  end
+
+  def discount
+    self.coupon.try(:value) || 0.00
   end
 
   private
@@ -26,9 +31,5 @@ class Order < ApplicationRecord
 
   def update_total
     self[:total] = total
-  end
-
-  def coupon
-    3.55
   end
 end
