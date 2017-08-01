@@ -8,9 +8,9 @@
         %span.icon-bar
       %a.navbar-brand= t('header.logo')
       %a.shop-link.pull-right.visible-xs{href: "#{cart_path}"}
-        %span.shop-icon= shop_icon_quantity(current_order.order_items.size)
+        %span.shop-icon= shop_icon_quantity(current_order)
     %a.shop-link.pull-right.hidden-xs{href: "#{cart_path}"}
-      %span.shop-icon= shop_icon_quantity(current_order.order_items.size)
+      %span.shop-icon= shop_icon_quantity(current_order)
     #navbar.navbar-collapse.collapse.pl-30{'aria-expanded': "false"}
       .visible-xs
         %button.close{type: "button", 'aria-label': "Close"}

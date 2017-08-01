@@ -14,13 +14,7 @@
       %tr
         %td.vertical-middle
           %span.in-grey-600= t('cart.quantity')
-        %td
-          .input-group
-            %a.input-link{href: "#"}
-              %i.fa.fa-minus.line-heaght-40
-            %input.form-control.quantity-input{type: "text", value: order_item.quantity}
-            %a.input-link{href: "#"}
-              %i.fa.fa-plus.line-heaght-40
+        = render 'carts/quantity', order_item: order_item
       %tr
         %td
           %span.in-grey-600= t('cart.subtotal')

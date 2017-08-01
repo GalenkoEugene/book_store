@@ -5,7 +5,8 @@ module ApplicationHelper
     book.authors.map(&:name).join(', ')
   end
 
-  def shop_icon_quantity(qty)
-    "<span class='shop-quantity'>#{qty}</span>".html_safe unless qty.to_i.zero?
+  def shop_icon_quantity(order)
+    qty = order.order_items.collect(&:quantity).sum
+    "<span class='shop-quantity'>#{qty}</span>".html_safe unless qty.zero?
   end
 end

@@ -13,8 +13,14 @@ RSpec.describe ApplicationHelper, type: :helper do
   end
 
   describe '#shop_icon_quantity' do
-    it 'wrap quantity in span' do
-      expect(helper.shop_icon_quantity(1)).to eq("<span class='shop-quantity'>1</span>")
+    let(:order) { double('curent_order') }
+    %w[1 2 4 8 16 56].each do |qqty|
+      it "wrap #{qqty} quantity in span" do
+        order_item = FactoryGirl.create(:order_item, quantity: qqty)
+        allow(order).to receive(:order_items).and_return([order_item])
+        expect(helper.shop_icon_quantity(order))
+          .to eq("<span class='shop-quantity'>#{qqty}</span>")
+      end
     end
   end
 end

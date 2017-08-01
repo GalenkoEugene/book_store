@@ -21,14 +21,14 @@ $(document).ready(function() {
 
     var quantity = $('input.form-control.quantity-input') // Input fields for amount of books
     var amount = parseInt(quantity.val());
-    $('i.fa.fa-minus.line-height-40').click(function(){
+    $('div.input-group.general-position i.fa.fa-minus.line-height-40').click(function(){
         if (amount > 1) {
             amount -= 1
             quantity.val(amount);
         } 
     });
 
-    $('i.fa.fa-plus.line-height-40').click(function(){
+    $('div.input-group.general-position i.fa.fa-plus.line-height-40').click(function(){
         amount += 1
         quantity.val(amount);
     });

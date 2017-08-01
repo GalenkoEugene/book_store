@@ -9,6 +9,7 @@ class OrderItem < ApplicationRecord
   validate :order_present
 
   before_save :finalize
+  default_scope { order(book_id: :asc) }
 
   def unit_price
     return  self[:unit_price] if persisted?
