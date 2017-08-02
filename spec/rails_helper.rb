@@ -38,6 +38,7 @@ RSpec.configure do |config|
   # config.include DeviseRequestSpecHelpers, type: :request
   config.include FormHelpers, type: :feature
   config.include Features::SessionHelpers, type: :feature
+  config.include Capybara::Webkit::RspecMatchers, type: :feature
 end
 
 Shoulda::Matchers.configure do |config|

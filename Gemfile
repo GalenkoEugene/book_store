@@ -49,6 +49,7 @@ end
 
 group :test do
   gem 'capybara', '~> 2.14.4'
+  gem 'capybara-webkit'
   gem 'database_cleaner'
   gem 'ffaker', '~> 2.6.0'
   gem 'shoulda-matchers', '~> 3.1.2'

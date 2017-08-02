@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require 'capybara/rspec'
+require 'capybara/webkit/matchers'
+Capybara.javascript_driver = :webkit
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
@@ -29,7 +31,7 @@ RSpec.configure do |config|
 =end
 
   config.before(:suite) do
-    DatabaseCleaner.clean_with(:truncation)
+    DatabaseCleaner.clean_with :truncation
     DatabaseCleaner.strategy = :transaction
   end
 

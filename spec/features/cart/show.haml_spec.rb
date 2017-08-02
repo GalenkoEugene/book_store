@@ -16,5 +16,6 @@ RSpec.feature 'Cart page', type: :feature do
     it { expect(subject).to have_content 'Coupon:' }
     it { expect(subject).to have_content 'Order Total:' }
     it { expect(subject).to have_content 'Coupon' }
+    it { expect(subject).to have_content 'Quantity' }
   end
 end
