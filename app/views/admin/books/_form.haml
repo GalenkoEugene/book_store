@@ -1,0 +1,16 @@
+= semantic_form_for [:admin, @book], html: { multipart: true }, builder: ActiveAdmin::FormBuilder do |f|
+  = f.inputs 'Book Info' do
+    = f.input :title
+    = f.input :category, as: :select, collection: @categories.pluck(:type_of, :id).uniq, include_blank: false
+    = f.input :authors, as: :select, collection: Author.pluck(:name, :id), include_blank: false
+    = f.input :published_at, label: 'Year of publication'
+    = f.input :price
+    = f.input :materials
+    = f.input :description
+    = f.input :active
+  = f.inputs 'Dimesions' do
+    = f.input :height
+    = f.input :weight
+    = f.input :depth
+  = f.actions
+

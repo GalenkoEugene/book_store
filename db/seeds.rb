@@ -48,3 +48,4 @@ OrderItem.create!(total_price: 66.66, quantity: 2, book_id: Book.last.id, unit_p
 (1..7).each do |coupon|
   Coupon.create(name: "D1234567890000#{coupon}", value: "#{coupon}.00".to_f)
 end
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

@@ -7,8 +7,9 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
 end
-
+gem 'activeadmin', github: 'activeadmin'
 gem 'bootstrap-sass', '3.3.7'
+gem 'cancan'
 gem 'devise', '4.3.0'
 gem 'font-awesome-rails', '4.7.0.2'
 gem 'kaminari', '1.0.1'

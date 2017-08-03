@@ -2,7 +2,7 @@
 
 module ApplicationHelper
   def authors_to_list(book)
-    book.authors.map(&:name).join(', ')
+    book.authors.pluck(:name).join(', ')
   end
 
   def shop_icon_quantity(order)
