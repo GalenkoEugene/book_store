@@ -11,16 +11,10 @@ ActiveAdmin.register Book do
     selectable_column
     column :id
     # column :image
-    column 'Category' do |book|
-      book.category.type_of
-    end
+    column('Category') { |book| book.category.type_of }
     column :title
-    column 'Authors' do |book|
-      authors_to_list(book)
-    end
-    column 'Description' do |book|
-      truncate(book.description, length: 75)
-    end
+    column('Authors') { |book| authors_to_list(book) }
+    column('Description') { |book| truncate(book.description, length: 75) }
     column :price
     column '' do |book|
       (link_to 'View', edit_admin_book_path(book)) + ' - ' +
@@ -28,21 +22,7 @@ ActiveAdmin.register Book do
     end
   end
 
-   show do
-     render 'admin/books/form', book: book
-  #   panel 'Book details' do
-  #     attributes_table_for book do
-  #       row :id
-  #       row 'Category' do
-  #         book.category.type_of
-  #       end
-  #       rows :title, :description
-  #       row  :price
-  #       rows :height, :weight, :depth
-  #       row :materials
-  #       row 'Year of publication' do
-  #         book.published_at
-  #       end
-  #     end
-     end
+  show do
+    render 'admin/books/form', book: book
+  end
 end

@@ -35,7 +35,7 @@ authors_in_db = Author.create!(authors)
 
 books.size.times do |item|
   new_book = authors_in_db.sample.books.create!(books[item])
-  new_book.authors.create!(name: FFaker::Book.author)
+  # new_book.authors.create!(name: FFaker::Book.author)
   new_book.authors << authors_in_db.sample
 end
 
