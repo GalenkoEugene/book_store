@@ -9,4 +9,10 @@ module ApplicationHelper
     qty = order.order_items.collect(&:quantity).sum
     "<span class='shop-quantity'>#{qty}</span>".html_safe unless qty.zero?
   end
+
+  def active_class(link_path)
+    return '' if request.GET.empty?
+    (link_path.include? request.GET.first.join('=')) ? 'active' : ''
+    # current_page?(link_path) ? 'active' : ''
+  end
 end

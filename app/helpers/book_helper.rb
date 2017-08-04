@@ -16,4 +16,16 @@ module BookHelper
     end
     set.html_safe
   end
+
+  def active_filter
+    case request.GET[:filter]
+    when 'popular' then t('button.popular_first')
+    when 'price_up' then t('button.low_to_hight')
+    when 'price_down' then t('button.hight_to_low')
+    when 'a_z' then t('button.title_A-Z')
+    when 'z_a' then t('button.title_Z-A')
+    else
+      t('button.newest_first')
+    end
+  end
 end

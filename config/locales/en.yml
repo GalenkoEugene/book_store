@@ -36,6 +36,8 @@ en:
     popular_first: 'Popular first'
     low_to_hight: 'Price: Low to hight'
     hight_to_low: 'Price: Hight to low'
+    title_A-Z: 'Title A - Z'
+    title_Z-A: 'Title Z - A'
 
   header:
     logo: 'Bookstore'

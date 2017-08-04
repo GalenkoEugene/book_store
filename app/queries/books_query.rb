@@ -14,6 +14,8 @@ class BooksQuery
     when 'popular' then popular
     when 'price_up' then price_up
     when 'price_down' then price_down
+    when 'a_z' then title_a_z
+    when 'z_a' then title_z_a
     else relation
     end
   end
@@ -34,5 +36,13 @@ class BooksQuery
 
   def price_down
     relation.order(price: :desc)
+  end
+
+  def title_a_z
+    relation.order(title: :asc)
+  end
+
+  def title_z_a
+    relation.order(title: :desc)
   end
 end

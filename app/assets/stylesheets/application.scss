@@ -9,3 +9,8 @@
 .more_content span {
     display: none;
 }
+
+.filter-link.active{ /* because in catalog page, 'active' class overridden by someone  */
+  color: black;
+  text-shadow: 0 0 1px rgba(0,0,0,0.2);
+}
