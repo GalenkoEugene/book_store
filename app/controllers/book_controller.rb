@@ -13,7 +13,7 @@ class BookController < ApplicationController
 
   def show
     @book = Book.find_by_id(params[:id])
-    @reviews = @book.reviews.decorate
+    @reviews = @book.reviews.approved.decorate
     redirect_to root_url, alert: 'No such book.' unless @book
   end
 
