@@ -1,6 +1,6 @@
 $(document).ready(function() {
     var showChar = 300;  // How many characters are shown
-    
+
     $('p.lead.small.line-height-2').each(function() {
         var content = $(this).html();
         if(content.length > showChar) {
@@ -10,7 +10,7 @@ $(document).ready(function() {
             $(this).html(html);
         }
     });
- 
+
     $(".in-gold-500.ml-10").click(function(){
         $(this).toggle();
         $(this).parent().prev().toggle();
@@ -25,12 +25,11 @@ $(document).ready(function() {
         if (amount > 1) {
             amount -= 1
             quantity.val(amount);
-        } 
+        }
     });
 
     $('div.input-group.general-position i.fa.fa-plus.line-height-40').click(function(){
         amount += 1
         quantity.val(amount);
     });
-
 });

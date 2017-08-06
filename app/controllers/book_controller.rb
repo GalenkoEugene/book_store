@@ -2,25 +2,25 @@
 
 # book
 class BookController < ApplicationController
-  before_action :book, only: [:show]
+  before_action :order_item
   respond_to :html, :js, only: [:index]
 
   def index
     filters
     books = Book.by_category(params[:category]).includes(:authors)
     @books = BooksQuery.new(books).run(params[:filter]).page(params[:page])
-    @order_item = current_order.order_items.new
   end
 
   def show
-    @order_item = current_order.order_items.new
+    @book = Book.find_by_id(params[:id])
+    @reviews = @book.reviews.decorate
     redirect_to root_url, alert: 'No such book.' unless @book
   end
 
   private
 
-  def book
-    @book = Book.find_by_id(params[:id])
+  def order_item
+    @order_item = current_order.order_items.new
   end
 
   def filters

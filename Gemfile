@@ -9,8 +9,9 @@ git_source(:github) do |repo_name|
 end
 gem 'activeadmin', github: 'activeadmin'
 gem 'bootstrap-sass', '3.3.7'
-gem 'cancan'
+gem 'cancan', '1.6.10'
 gem 'devise', '4.3.0'
+gem 'draper', '3.0.0'
 gem 'font-awesome-rails', '4.7.0.2'
 gem 'kaminari', '1.0.1'
 gem 'omniauth-facebook', '4.0.0'

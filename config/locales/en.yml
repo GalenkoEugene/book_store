@@ -84,3 +84,9 @@ en:
     summary: 'Order Summary'
     coupon: 'Coupon'
     total: 'Order Total'
+  review:
+    reviews: 'Reviews'
+    verified: 'Verified Reviewer'
+    write: 'Write a Review'
+    thanks_message: 'Thanks for Review. It will be published as soon as Admin will approve it.'
+    smth_went_wrong: 'Something went wrong.'

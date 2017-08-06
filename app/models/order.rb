@@ -16,7 +16,7 @@ class Order < ApplicationRecord
   end
 
   def discount
-    self.coupon.try(:value) || 0.00
+    coupon.try(:value) || 0.00
   end
 
   private

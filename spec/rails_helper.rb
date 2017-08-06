@@ -10,6 +10,7 @@ require 'capybara/rails'
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 Dir[Rails.root.join('spec/features/shared_examples/**/*.rb')].each { |f| require f }
+Dir[Rails.root.join('spec/controllers/shared_examples/**/*.rb')].each { |f| require f }
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
@@ -39,6 +40,7 @@ RSpec.configure do |config|
   config.include FormHelpers, type: :feature
   config.include Features::SessionHelpers, type: :feature
   config.include Capybara::Webkit::RspecMatchers, type: :feature
+  config.include RedirectBack
 end
 
 Shoulda::Matchers.configure do |config|

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class OrderItemsController < ApplicationController
-  before_action :get_order
+  before_action :order
 
   def create
     @order_item = @order.order_items.find_or_initialize_by(book_id: order_item_params[:book_id])
@@ -21,7 +23,7 @@ class OrderItemsController < ApplicationController
 
   private
 
-  def get_order
+  def order
     @order = current_order
   end
 

@@ -48,4 +48,5 @@
           %p.pull-left= t('page.book.show.materials')
           %p.lead.small.pull-right= @book.materials
   .mb-80
-    = render 'reviews'
+    = render 'reviews/reviews'
+    = render 'reviews/review_form' if current_user
