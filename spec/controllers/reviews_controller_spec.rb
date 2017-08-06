@@ -8,10 +8,9 @@ RSpec.describe ReviewsController, type: :controller do
     before do
       allow_any_instance_of(Review).to receive(:save).and_return false
     end
-    include_examples 'redirect_back'
 
     it 'sends error flash' do
-      post :create, params: { review: review_params }
+      post :create, xhr: true, params: { review: review_params }
       expect(flash[:danger]).to eq I18n.t('review.smth_went_wrong')
     end
   end
@@ -20,10 +19,9 @@ RSpec.describe ReviewsController, type: :controller do
     before do
       allow_any_instance_of(Review).to receive(:save).and_return true
     end
-    include_examples 'redirect_back'
 
     it 'sends success flash' do
-      post :create, params: { review: review_params }
+      post :create, xhr: true, params: { review: review_params }
       expect(flash[:success]).to eq I18n.t('review.thanks_message')
     end
   end

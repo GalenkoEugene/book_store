@@ -1,6 +1,6 @@
 .general-message-wrap.divider.form
   %h3= t('review.write')
-  = form_with model: Review.new, html: { id: 'post_review'} do |f|
+  = form_with model: Review.new, html: { id: 'post_review'}, remote: true do |f|
     = f.hidden_field :book_id, value: @book.id
     = f.hidden_field :user_id, value: current_user.id
     = f.label :score, 'Score', class: 'control-label'
