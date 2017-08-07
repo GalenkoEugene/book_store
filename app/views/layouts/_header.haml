@@ -23,7 +23,6 @@
             %ul#menu.collapse.list-unstyled.pl-30.mb-10{'aria-expanded': "false"}
               = render 'layouts/categories'
           = log_in_up_helper
-          = log_out_helper
       .hidden-xs
         %ul.nav.navbar-nav
           %li
@@ -32,5 +31,4 @@
             %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}= t('header.shop')
             %ul.dropdown-menu
               = render 'layouts/categories'
-              = log_out_helper
           = log_in_up_helper
