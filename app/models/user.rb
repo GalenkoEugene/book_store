@@ -10,6 +10,9 @@ class User < ApplicationRecord
 
   validates_uniqueness_of :uid, unless: Proc.new { provider.nil? }, scope: :provider
   has_many :reviews
+  has_many :addresses
+  has_one :billing
+  has_one :shipping
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

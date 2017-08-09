@@ -10,6 +10,7 @@ end
 gem 'activeadmin', github: 'activeadmin'
 gem 'bootstrap-sass', '3.3.7'
 gem 'cancan', '1.6.10'
+gem 'country_select'
 gem 'devise', '4.3.0'
 gem 'draper', '3.0.0'
 gem 'font-awesome-rails', '4.7.0.2'
@@ -20,6 +21,8 @@ gem 'puma', '~> 3.7'
 gem 'rails', '5.1.2'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
+gem 'virtus'
+gem 'wicked'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 

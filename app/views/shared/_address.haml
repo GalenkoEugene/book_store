@@ -1,0 +1,22 @@
+.form-group.has-error
+  = ff.label :first_name, 'First Name', class: 'control-label input-label'
+  = ff.text_field :first_name, class: 'form-control',  autocomplete: 'off', placeholder: 'First Name'
+  %span.help-block Please enter your first name
+.form-group
+  = ff.label :last_name, class: 'control-label input-label'
+  = ff.text_field :last_name, class: 'form-control',  autocomplete: 'off', placeholder: 'Last Name'
+.form-group
+  = ff.label :address, 'Address', class: 'control-label input-label'
+  = ff.text_field :address, class: 'form-control',  autocomplete: 'off', placeholder: 'Address'
+.form-group
+  = ff.label :city, 'City', class: 'control-label input-label'
+  = ff.text_field :city, class: 'form-control',  autocomplete: 'off', placeholder: 'City'
+.form-group
+  = ff.label :zip, 'Zip', class: 'control-label input-label'
+  = ff.text_field :zip, class: 'form-control',  autocomplete: 'off', placeholder: 'Zip'
+.form-group
+  = ff.label :country, 'Country', class: 'control-label input-label'
+  = ff.country_select(:country, { priority_countries: ['UA'], placeholder: 'Select a country' }, { class: 'form-control', id: 'country' } )
+.form-group.mb-55
+  = ff.label :phone, 'Phone', class: 'control-label input-label'
+  = ff.text_field :phone, class: 'form-control',  autocomplete: 'off', placeholder: 'Example +355 66 123 4567'
