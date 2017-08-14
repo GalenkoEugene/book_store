@@ -109,5 +109,11 @@ en:
     remove_account: 'Remove Account'
     please_remove_account: 'Please Remove My Account'
     im_agree_lost_all_data: 'I understand that all data will be lost'
+    first_name: 'First Name'
+    last_name: 'Last Name'
+    city: 'City'
+    zip: 'Zip'
+    country: 'Country'
+    country_select: 'Select a country'
   user:
     seccess_updating_email: 'E-mail was successfully updated.'

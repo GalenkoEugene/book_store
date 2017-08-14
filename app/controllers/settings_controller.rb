@@ -9,6 +9,12 @@ class SettingsController < ApplicationController
   end
 
   def create
-    @addresses = AddressesForm.submit(params, current_user.id)
+    @addresses = AddressesForm.new(params, current_user.id)
+
+    if @addresses.save
+      flash.now[:success] = 'Addresses succesfuly updated'
+    else
+      flash.now[:danger] = t('review.smth_went_wrong')
+    end
   end
 end
