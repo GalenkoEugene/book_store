@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class AddressesForm
-  attr_reader :params
-  attr_accessor :billing, :shipping
-
   include ActiveModel::Model
   include Virtus.model
+
+  attr_reader :params
+  attr_accessor :billing, :shipping
 
   def initialize(params, user_id)
     @params = params
@@ -18,6 +18,21 @@ class AddressesForm
     true
   end
 
+  def errors
+    errors = {}
+    errors[:billing] = billing.errors
+    errors[:shipping] = shipping.errors
+    errors
+  end
+
+  def billing
+    @billing ||= Billing.new(params_for(:billing))
+  end
+
+  def shipping
+    @shipping ||= Shipping.new(params_for(:shipping))
+  end
+
 private
 
   def persist!
@@ -25,15 +40,8 @@ private
     shipping.save
   end
 
-  def billing
-    @billing = Billing.new(params_for(:billing))
-  end
-
-  def shipping
-    @shipping = Shipping.new(params_for(:shipping))
-  end
-
   def valid?
+    shipping.valid?
     billing.valid? && shipping.valid?
   end
 

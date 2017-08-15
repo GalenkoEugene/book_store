@@ -1,22 +1,28 @@
-.form-group.has-error
+.form-group
   = ff.label :first_name, t('settings.first_name'), class: 'control-label input-label'
   = ff.text_field :first_name, class: 'form-control',  autocomplete: 'off', placeholder: t('settings.first_name')
   %span.help-block
 .form-group
   = ff.label :last_name, class: 'control-label input-label'
   = ff.text_field :last_name, class: 'form-control',  autocomplete: 'off', placeholder: t('settings.last_name')
+  %span.help-block
 .form-group
   = ff.label :address, t('settings.address'), class: 'control-label input-label'
   = ff.text_field :address, class: 'form-control',  autocomplete: 'off', placeholder: t('settings.address')
+  %span.help-block
 .form-group
   = ff.label :city, t('settings.city'), class: 'control-label input-label'
   = ff.text_field :city, class: 'form-control',  autocomplete: 'off', placeholder: t('settings.city')
+  %span.help-block
 .form-group
   = ff.label :zip, t('settings.zip'), class: 'control-label input-label'
   = ff.text_field :zip, class: 'form-control',  autocomplete: 'off', placeholder: t('settings.zip')
+  %span.help-block
 .form-group
   = ff.label :country, t('settings.country'), class: 'control-label input-label'
   = ff.country_select(:country, { priority_countries: ['UA'], placeholder: t('settings.country_select') }, { class: 'form-control', id: 'country' } )
+  %span.help-block
 .form-group.mb-55
   = ff.label :phone, 'Phone', class: 'control-label input-label'
   = ff.text_field :phone, class: 'form-control',  autocomplete: 'off', placeholder: 'Example +355 66 123 4567'
+  %span.help-block
