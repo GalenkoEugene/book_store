@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Address < ApplicationRecord
+  belongs_to :user
+
   scope :shipping, -> { where(type: 'Shipping') }
   scope :billing, -> { where(type: 'Billing') }
 

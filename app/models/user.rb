@@ -15,6 +15,14 @@ class User < ApplicationRecord
   has_one :billing
   has_one :shipping
 
+  Warden::Manager.after_set_user do |user, auth, opts|
+    order_id = auth.env['rack.session'][:order_id]
+    if order_id
+      @order = Order.find(order_id)
+      @order.update_attribute(:user_id, user.id) unless @order.user_id
+    end
+  end
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       full_name = auth.info.name.split(' ')
