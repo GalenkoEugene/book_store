@@ -11,6 +11,7 @@ class User < ApplicationRecord
   validates_uniqueness_of :uid, unless: Proc.new { provider.nil? }, scope: :provider
   has_many :reviews
   has_many :addresses
+  has_many :orders
   has_one :billing
   has_one :shipping
 

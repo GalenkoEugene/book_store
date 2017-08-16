@@ -117,3 +117,16 @@ en:
     country_select: 'Select a country'
   user:
     seccess_updating_email: 'E-mail was successfully updated.'
+  order:
+    my_orders: 'My Orders'
+    number: 'Number'
+    complited_at: 'Completed at'
+    statuss: 'Status'
+    total: 'Total'
+    status:
+      in_progress: 'In Progress'
+      in_queue: 'Waiting for processing'
+      in_delivery: 'In delivery'
+      delivered: 'Delivered'
+      canceled: 'Cenceled'
+      all: 'All Orders'

@@ -3,9 +3,11 @@
 class Order < ApplicationRecord
   belongs_to :order_status
   belongs_to :coupon, optional: true
+  belongs_to :user
   has_many :order_items
   before_validation :set_order_status, on: :create
   before_save :update_subtotal, :update_total
+
 
   def subtotal
     order_items.collect { |oi| oi.valid? ? (oi.quantity * oi.unit_price) : 0 }.sum

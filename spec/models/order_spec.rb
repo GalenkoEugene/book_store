@@ -4,8 +4,10 @@ RSpec.describe Order, type: :model do
   it { expect(subject).to have_many :order_items }
   it { expect(subject).to belong_to :order_status }
   it { expect(subject).to belong_to :coupon }
+  it { expect(subject).to belong_to :user }
 
   it 'set order status before create' do
+    subject.user_id = FactoryGirl.create(:user).id
     subject.order_status_id= FactoryGirl.create(:order_status).id
     expect(subject).to receive :set_order_status
     subject.save!
