@@ -8,9 +8,10 @@ Rails.application.routes.draw do
   resource :cart, only: [:show, :update]
   resources :order_items, only: [:create, :update, :destroy]
   match '/catalog', to: 'book#index', via: 'get'
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_for :users,  controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   resources :users, only: [:update]
   resources :settings
   resources :reviews, only: :create
   resources :orders
+  resources :checkout, only: [:show, :index]
 end

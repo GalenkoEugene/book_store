@@ -14,7 +14,7 @@ class BookController < ApplicationController
   def show
     @book = Book.find_by_id(params[:id])
     @reviews = @book.reviews.approved.decorate
-    redirect_to root_url, alert: 'No such book.' unless @book
+    redirect_to root_url, alert: 'No such book.', status: :gone unless @book
   end
 
   private

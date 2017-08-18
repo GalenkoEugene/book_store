@@ -1,0 +1,31 @@
+%main.container
+  = render 'checkout/progress'
+  = form_with url: settings_path, id: 'addresses', class: 'res-mb-100' do |f|
+    .hidden-xs.hidden-sm
+      .row
+        .col-md-5
+          %h3.general-subtitle= t('settings.billing')
+          %p.general-info-text all fields are required
+        .col-md-5.col-md-offset-1
+          %h3.general-subtitle= t('settings.shipping')
+    .row
+      .col-md-5.mb-40
+        .visible-xs.visible-sm
+          %h3.general-subtitle= t('settings.billing')
+          %p.general-info-text all fields are required
+        = f.fields_for @billing do |ff|
+          = render 'shared/address', ff: ff
+      .col-md-5.col-md-offset-1.mb-60
+        .visible-xs.visible-sm
+          %h3.general-subtitle= t('settings.shipping')
+        = f.fields_for @shipping do |ff|
+          = render 'shared/address', ff: ff
+        .form-group.checkbox
+          %label.checkbox-label
+            %input.checkbox-input{type: "checkbox", hidden: "true"}
+            %span.checkbox-icon
+              %i.fa.fa-check
+            %span.checkbox-text= t('settings.use_billing')
+    .general-text-align.mb-60
+      = render 'checkout/order_summary'
+      = link_to 'Save and Continue', next_wizard_path, class: 'btn center-block mb-20'

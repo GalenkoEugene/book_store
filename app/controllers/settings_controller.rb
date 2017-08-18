@@ -4,16 +4,13 @@ class SettingsController < ApplicationController
   include OutsideDevise
 
   def new
-    @shipping = Shipping.new
-    @billing = Billing.new
+    @shipping = current_user.addresses.find_or_initialize_by(type: 'Billing')
+    @billing = current_user.addresses.find_or_initialize_by(type: 'Shipping')
   end
 
   def create
     @addresses = AddressesForm.new(params, current_user.id)
-    if @addresses.save
-      flash.now[:success] = 'Addresses succesfuly updated'
-    else
-      render json: @addresses.errors, callback: 'parse_errors', status: :unprocessable_entity
-    end
+    status = @addresses.save ? :created : :unprocessable_entity
+    render json: @addresses.errors, callback: 'parse_errors', status: status
   end
 end

@@ -8,6 +8,8 @@ class Order < ApplicationRecord
   before_validation :set_order_status, on: :create
   before_save :update_subtotal, :update_total, :connect_to_user
 
+  scope :where_status, -> (status_name) { joins(:order_status).where(order_statuses: { name: status_name }) }
+
   def subtotal
     order_items.collect { |oi| oi.valid? ? (oi.quantity * oi.unit_price) : 0 }.sum
   end

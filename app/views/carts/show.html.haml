@@ -17,4 +17,5 @@
         %th.col-close
       = render 'carts/order_items', locals: @order_items
   = render 'carts/order_summary'
-  %button.btn.btn-default.mb-20.hidden-xs.center-block= t('cart.checkout')
+  .text-center
+    = link_to t('cart.checkout'), checkout_index_path, class: 'btn btn-default mb-20'

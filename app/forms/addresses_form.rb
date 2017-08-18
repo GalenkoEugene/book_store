@@ -4,12 +4,13 @@ class AddressesForm
   include ActiveModel::Model
   include Virtus.model
 
-  attr_reader :params
+  attr_reader :params, :user
   attr_accessor :billing, :shipping
 
   def initialize(params, user_id)
     @params = params
     safely_add_user(user_id) if User.exists?(user_id)
+    @user = User.find(user_id)
   end
 
   def save
@@ -26,11 +27,15 @@ class AddressesForm
   end
 
   def billing
-    @billing ||= Billing.new(params_for(:billing))
+    fresh_bill = user.addresses.find_or_initialize_by(type: 'Billing')
+    fresh_bill.assign_attributes(params_for(:billing))
+    @billing ||= fresh_bill
   end
 
   def shipping
-    @shipping ||= Shipping.new(params_for(:shipping))
+    fresh_shipp = user.addresses.find_or_initialize_by(type: 'Shipping')
+    fresh_shipp.assign_attributes(params_for(:shipping))
+    @shipping ||= fresh_shipp
   end
 
 private
