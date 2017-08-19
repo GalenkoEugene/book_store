@@ -4,13 +4,19 @@ class SettingsController < ApplicationController
   include OutsideDevise
 
   def new
-    @shipping = current_user.addresses.find_or_initialize_by(type: 'Billing')
-    @billing = current_user.addresses.find_or_initialize_by(type: 'Shipping')
+    @addresses = AddressesForm.new(user_id: current_user.id)
   end
 
   def create
-    @addresses = AddressesForm.new(params, current_user.id)
+    @addresses = AddressesForm.new(addresses_params)
     status = @addresses.save ? :created : :unprocessable_entity
     render json: @addresses.errors, callback: 'parse_errors', status: status
+  end
+
+  private
+
+  def addresses_params
+    %i[shipping billing].each { |type| params[type][:user_id] = current_user.id }
+    params
   end
 end

@@ -5,6 +5,9 @@ class Order < ApplicationRecord
   belongs_to :coupon, optional: true
   belongs_to :user, optional: true
   has_many :order_items, dependent: :destroy
+  has_many :addresses
+  has_one :billing
+  has_one :shipping
   before_validation :set_order_status, on: :create
   before_save :update_subtotal, :update_total, :connect_to_user
 

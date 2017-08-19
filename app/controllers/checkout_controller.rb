@@ -1,11 +1,19 @@
+# frozen_string_literal: true
+
 class CheckoutController < ApplicationController
   include Wicked::Wizard
 
   steps :address, :delivery, :payment, :confirm, :complete
 
   def show
-    @shipping = current_user.addresses.find_or_initialize_by(type: 'Billing')
-    @billing = current_user.addresses.find_or_initialize_by(type: 'Shipping')
+    @addresses = AddressesForm.new(show_addresses_params)
     render_wizard
+  end
+
+  private
+
+  def show_addresses_params
+    return { user_id: current_user.id }  if current_order.addresses.empty?
+    { order_id: current_order.id }
   end
 end

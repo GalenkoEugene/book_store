@@ -13,12 +13,12 @@
         .visible-xs.visible-sm
           %h3.general-subtitle= t('settings.billing')
           %p.general-info-text all fields are required
-        = f.fields_for @billing do |ff|
+        = f.fields_for @addresses.billing do |ff|
           = render 'shared/address', ff: ff
       .col-md-5.col-md-offset-1.mb-60
         .visible-xs.visible-sm
           %h3.general-subtitle= t('settings.shipping')
-        = f.fields_for @shipping do |ff|
+        = f.fields_for @addresses.shipping do |ff|
           = render 'shared/address', ff: ff
         .form-group.checkbox
           %label.checkbox-label
