@@ -1,6 +1,6 @@
 %main.container
   = render 'checkout/progress'
-  = form_with url: settings_path, id: 'addresses', class: 'res-mb-100' do |f|
+  = form_with url: wizard_path, method: :put, id: 'addresses', class: 'res-mb-100' do |f|
     .hidden-xs.hidden-sm
       .row
         .col-md-5
@@ -28,4 +28,5 @@
             %span.checkbox-text= t('settings.use_billing')
     .general-text-align.mb-60
       = render 'checkout/order_summary'
+      = f.submit 'LOSALAS'
       = link_to 'Save and Continue', next_wizard_path, class: 'btn center-block mb-20'

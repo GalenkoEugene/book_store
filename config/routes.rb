@@ -13,5 +13,5 @@ Rails.application.routes.draw do
   resources :settings
   resources :reviews, only: :create
   resources :orders
-  resources :checkout, only: [:show, :index]
+  resources :checkout
 end
