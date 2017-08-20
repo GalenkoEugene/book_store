@@ -8,6 +8,7 @@ class CheckoutController < ApplicationController
   def show
     @addresses = AddressesForm.new(show_addresses_params)
     @deliveries = Delivery.all
+    @credit_card = current_order.credit_card || CreditCard.new
     render_wizard
   end
 
@@ -21,7 +22,14 @@ class CheckoutController < ApplicationController
       current_order.update_attributes(order_params)
       redirect_to next_wizard_path
     when :payment
-
+      @credit_card = current_order.credit_card || CreditCard.new
+      @credit_card.update_attributes(credit_card_params)
+      if @credit_card.save
+        current_order.update_attributes(credit_card_id: @credit_card.id)
+        redirect_to next_wizard_path
+      else
+        render json: @credit_card.errors, callback: 'parse_errors', status: :unprocessable_entity
+      end
     end
   end
 
@@ -39,5 +47,9 @@ class CheckoutController < ApplicationController
 
   def order_params
     params.require(:order).permit(:delivery_id)
+  end
+
+  def credit_card_params
+    params.require(:credit_card).permit(:number, :name, :mm_yy, :cvv)
   end
 end

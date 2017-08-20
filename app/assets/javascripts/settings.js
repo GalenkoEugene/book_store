@@ -1,8 +1,9 @@
 
 function parse_errors(data){
-  clear_errors()
+  clear_errors();
   for (var type in data){
     put_error_message(type, data[type]);
+    put_error_message_for_credit_card(type, data[type]);
   }
 }
 
@@ -19,3 +20,10 @@ function clear_errors(){
   $("span.help-block").html("");
 }
 
+function put_error_message_for_credit_card(type, data){
+  for (var key in data){
+    var target = "#credit_card_" + type;
+    $(target).parent().addClass('has-error');
+    $(target).next().text(data);
+  }
+}

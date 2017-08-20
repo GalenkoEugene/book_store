@@ -5,6 +5,8 @@ RSpec.describe Order, type: :model do
   it { expect(subject).to belong_to :order_status }
   it { expect(subject).to belong_to :coupon }
   it { expect(subject).to belong_to :user }
+  it { expect(subject).to belong_to :credit_card }
+  it { expect(subject).to belong_to :delivery }
 
   it 'set order status before create' do
     subject.user_id = FactoryGirl.create(:user).id

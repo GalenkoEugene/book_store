@@ -1,25 +1,27 @@
 %main.container.mb-res-50
   = render 'checkout/progress'
   %h3.general-subtitle Credit Card
-  %form.max-600.mb-80
-    .form-group.has-error
-      %label.control-label.input-label{for: "cardNumber"} Card Number
-      %input#cardNumber.form-control{type: "number", name: "cardnumber", placeholder: "Card Number"}
+  = form_for @credit_card, url: wizard_path, method: :put, remote: true, html: { class: 'max-600 mb-80' } do |f|
+    .form-group
+      = f.label :number, 'Card Number', class: 'control-label input-label'
+      = f.text_field :number, class: 'form-control', placeholder: 'Card Number'
       %span.help-block Please enter a valid credit card number
     .row
       .col-sm-6
         .form-group
-          %label.control-label.input-label{for: "cardName"} Name on Card
-          %input#cardName.form-control{type: "text", name: "ccname", placeholder: "Name on Card"}
+          = f.label :name, 'Name on Card', class: 'control-label input-label'
+          = f.text_field :name, class: 'form-control', placeholder: 'Name on Card'
+          %span.help-block
       .col-sm-3
         .form-group
-          %label.control-label.input-label{for: "firstName"} MM / YY
-          %input#firstName.form-control{name: "exp-date", type: "text", placeholder: "MM / YY"}
+          = f.label :mm_yy, 'MM / YY', class: 'control-label input-label'
+          = f.text_field :mm_yy, class: 'form-control', placeholder: 'MM / YY'
+          %span.help-block
       .col-sm-3
         .form-group.relative
-          %label.control-label.input-label{for: "firstName"} CVV
-          %input#firstName.form-control{name: "cvc", type: "number", placeholder: "CVV"}
-          %i.fa.fa-question-circle.general-form-help
-  = render 'checkout/order_summary'
-  .text-center
-    = link_to 'Save and Continue', next_wizard_path, class: 'btn btn-default mb-80'
+          = f.label :cvv, 'CVV', class: 'control-label input-label'
+          = f.text_field :cvv, class: 'form-control', placeholder: 'CVV'
+          %span.help-block
+          %i.fa.fa-question-circle.general-form-help{'data-toggle': 'tooltip', 'data-placement': :top, title: t('credit_card.tooltip')}
+    = render 'checkout/order_summary'
+    = f.submit 'Save and Continue', class: 'btn btn-default center-block mb-80'

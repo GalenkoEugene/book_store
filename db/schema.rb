@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170819124405) do
+ActiveRecord::Schema.define(version: 20170820130849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,6 +97,13 @@ ActiveRecord::Schema.define(version: 20170819124405) do
     t.decimal "value", precision: 8, scale: 2
   end
 
+  create_table "credit_cards", force: :cascade do |t|
+    t.string "number"
+    t.string "name"
+    t.string "mm_yy"
+    t.string "cvv"
+  end
+
   create_table "deliveries", force: :cascade do |t|
     t.string "method"
     t.string "duration"
@@ -130,7 +137,9 @@ ActiveRecord::Schema.define(version: 20170819124405) do
     t.bigint "coupon_id"
     t.bigint "user_id"
     t.bigint "delivery_id"
+    t.bigint "credit_card_id"
     t.index ["coupon_id"], name: "index_orders_on_coupon_id"
+    t.index ["credit_card_id"], name: "index_orders_on_credit_card_id"
     t.index ["delivery_id"], name: "index_orders_on_delivery_id"
     t.index ["order_status_id"], name: "index_orders_on_order_status_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
@@ -178,6 +187,7 @@ ActiveRecord::Schema.define(version: 20170819124405) do
   add_foreign_key "order_items", "books"
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "coupons"
+  add_foreign_key "orders", "credit_cards"
   add_foreign_key "orders", "deliveries"
   add_foreign_key "orders", "order_statuses"
   add_foreign_key "orders", "users"
