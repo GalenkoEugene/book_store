@@ -7,6 +7,7 @@ class CheckoutController < ApplicationController
 
   def show
     @addresses = AddressesForm.new(show_addresses_params)
+    @deliveries = Delivery.all
     render_wizard
   end
 
@@ -16,8 +17,12 @@ class CheckoutController < ApplicationController
       @addresses = AddressesForm.new(addresses_params)
       return  redirect_to next_wizard_path if @addresses.save
       render json: @addresses.errors, callback: 'parse_errors', status: :unprocessable_entity
-    end
+    when :delivery
+      current_order.update_attributes(order_params)
+      redirect_to next_wizard_path
+    when :payment
 
+    end
   end
 
   private
@@ -30,5 +35,9 @@ class CheckoutController < ApplicationController
   def addresses_params
     %i[shipping billing].each { |type| params[type][:order_id] = current_order.id }
     params
+  end
+
+  def order_params
+    params.require(:order).permit(:delivery_id)
   end
 end

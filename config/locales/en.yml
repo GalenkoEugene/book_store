@@ -130,3 +130,10 @@ en:
       delivered: 'Delivered'
       canceled: 'Cenceled'
       all: 'All Orders'
+
+  delivery:
+    delivery_method: 'Shipping Method'
+    method: 'Method'
+    days: 'Days'
+    price: 'Price'
+

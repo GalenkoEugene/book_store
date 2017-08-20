@@ -4,6 +4,7 @@ class Order < ApplicationRecord
   belongs_to :order_status
   belongs_to :coupon, optional: true
   belongs_to :user, optional: true
+  belongs_to :delivery, optional: true
   has_many :order_items, dependent: :destroy
   has_many :addresses
   has_one :billing
