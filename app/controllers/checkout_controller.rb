@@ -2,10 +2,12 @@
 
 class CheckoutController < ApplicationController
   include Wicked::Wizard
+  before_action :authenticate_user!
 
   steps :address, :delivery, :payment, :confirm, :complete
 
   def show
+    return redirect_to catalog_path if current_order.order_items.empty?
     @addresses = AddressesForm.new(show_addresses_params)
     @deliveries = Delivery.all
     @credit_card = current_order.credit_card || CreditCard.new

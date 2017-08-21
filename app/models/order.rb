@@ -16,7 +16,7 @@ class Order < ApplicationRecord
   scope :where_status, -> (status_name) { joins(:order_status).where(order_statuses: { name: status_name }) }
 
   def subtotal
-    order_items.collect { |oi| oi.valid? ? (oi.quantity * oi.unit_price) : 0 }.sum
+    order_items.sum(&:total_price)
   end
 
   def total
