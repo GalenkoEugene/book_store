@@ -139,3 +139,11 @@ en:
 
   credit_card:
     tooltip: '3-digit security code, usually found on the back of your card. American Express cards has 4-digit code, located on the front'
+  confirm:
+    shipments: 'Shipments'
+    payment_info: 'Payment Information'
+    edit: 'edit'
+    delivery: 'Delivery'
+    paymant: 'Payment'
+    confirm: 'Confirm'
+    complete: 'Complete'

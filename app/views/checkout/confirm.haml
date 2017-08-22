@@ -1,46 +1,7 @@
 %main.container.general-main-wrap
   = render 'checkout/progress'
   .row.mb-20
-    .col-sm-3
-      %h3.general-subtitle Shipping Address
-      %p.general-address
-        John Doe
-        %span.general-edit edit
-        %br
-        44 Fifth Ave v231
-        %br
-        New York NY 1001
-        %br
-        United States
-        %br
-        Phone +16507599755
-    .col-sm-3
-      %h3.general-subtitle Billing Address
-      %p.general-address
-        John Doe
-        %span.general-edit edit
-        %br
-        44 Fifth Ave v231
-        %br
-        New York NY 1001
-        %br
-        United States
-        %br
-        Phone +16507599755
-    .col-sm-3
-      %h3.general-subtitle Shipments
-      %p.general-address
-        Delivery Next Day!
-        %span.general-edit edit
-        %br
-        By train
-    .col-sm-3
-      %h3.general-subtitle Payment Information
-      %p.general-address
-        ** ** ** 8756
-        %span.general-edit edit
-        %br
-        12/2018
+    = render 'checkout/partials/confirm_all'
   .visible-xs
     .general-cart-item.divider-lg
       .general-img-wrap-table

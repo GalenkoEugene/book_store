@@ -9,8 +9,16 @@ class CheckoutController < ApplicationController
   def show
     return redirect_to catalog_path if current_order.order_items.empty?
     @addresses = AddressesForm.new(show_addresses_params)
-    @deliveries = Delivery.all
-    @credit_card = current_order.credit_card || CreditCard.new
+    case step
+    when :delivery
+      jump_to(previous_step) if current_order.addresses.empty?
+      @deliveries = Delivery.all
+    when :payment
+      jump_to(previous_step) unless current_order.delivery
+      @credit_card = current_order.credit_card || CreditCard.new
+    when :confirm
+      jump_to(previous_step) unless current_order.credit_card
+    end
     render_wizard
   end
 
