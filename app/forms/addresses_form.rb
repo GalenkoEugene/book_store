@@ -64,6 +64,7 @@ private
   end
 
   def params_for(type)
+    type = params[:use_billing] == '1' ? :billing : type
     params.require(type).permit(:first_name, :last_name, :address, :city, :zip, :country, :phone, :user_id, :order_id)
   end
 end

@@ -26,24 +26,22 @@ class CheckoutController < ApplicationController
     case step
     when :address
       @addresses = AddressesForm.new(addresses_params)
-      return  redirect_to next_wizard_path if @addresses.save
-      render json: @addresses.errors, callback: 'parse_errors', status: :unprocessable_entity
+      return errors_for(@addresses) unless @addresses.save
     when :delivery
       current_order.update_attributes(order_params)
-      redirect_to next_wizard_path
     when :payment
-      @credit_card = current_order.credit_card || CreditCard.new
-      @credit_card.update_attributes(credit_card_params)
-      if @credit_card.save
-        current_order.update_attributes(credit_card_id: @credit_card.id)
-        redirect_to next_wizard_path
-      else
-        render json: @credit_card.errors, callback: 'parse_errors', status: :unprocessable_entity
-      end
+      @credit_card = CreditCard.new(credit_card_params)
+      return errors_for(@credit_card) unless @credit_card.save
+      current_order.update_attributes(credit_card_id: @credit_card.id)
     end
+    redirect_to next_wizard_path
   end
 
   private
+
+  def errors_for(subject)
+    render json: subject.errors, callback: 'parse_errors', status: :unprocessable_entity
+  end
 
   def show_addresses_params
     return { user_id: current_user.id }  if current_order.addresses.empty?
