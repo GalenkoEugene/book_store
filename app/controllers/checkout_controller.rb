@@ -32,7 +32,6 @@ class CheckoutController < ApplicationController
     when :payment
       @credit_card = CreditCard.new(credit_card_params)
       return errors_for(@credit_card) unless @credit_card.save
-      current_order.update_attributes(credit_card_id: @credit_card.id)
     end
     redirect_to next_wizard_path
   end

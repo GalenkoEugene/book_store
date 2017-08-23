@@ -147,3 +147,5 @@ en:
     paymant: 'Payment'
     confirm: 'Confirm'
     complete: 'Complete'
+    shipping: 'Shipping'
+    item_total: 'Item Total'

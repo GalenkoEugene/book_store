@@ -20,11 +20,19 @@ class Order < ApplicationRecord
   end
 
   def total
+    subtotal_item_total + shipping_price
+  end
+
+  def subtotal_item_total
     subtotal - discount
   end
 
   def discount
     coupon.try(:value) || 0.00
+  end
+
+  def shipping_price
+    self.delivery.try(:price) || 0.00
   end
 
   private
