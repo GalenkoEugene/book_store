@@ -4,17 +4,18 @@
     = render 'carts/xs_order_items', locals: @order_items
   .hidden-xs
     %table.table.table-hover
-      %tr.no-hover
-        %th.col-pic.pl-0
-          %span.in-grey-600= t('cart.product')
-        %th.col-title
-        %th.col-price
-          %span.in-grey-600= t('cart.price')
-        %th.col-quantity
-          %span.in-grey-600= t('cart.quantity')
-        %th.col-total
-          %span.in-grey-600= t('cart.subtotal')
-        %th.col-close
+      %thead
+        %tr
+          %th.col-pic.pl-0
+            %span.in-grey-600= t('cart.product')
+          %th.col-title
+          %th.col-price
+            %span.in-grey-600= t('cart.price')
+          %th.col-quantity
+            %span.in-grey-600= t('cart.quantity')
+          %th.col-total
+            %span.in-grey-600= t('cart.subtotal')
+          %th.col-close
       = render 'carts/order_items', locals: @order_items
   = render 'carts/order_summary'
   .text-center
