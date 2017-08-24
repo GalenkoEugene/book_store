@@ -59,6 +59,7 @@ en:
       index:
         by_category: 'Filter by category'
         sort_by: 'Sort by'
+        catalog: 'Catalog'
   cart:
     cart: 'Cart'
     product: 'Product'
