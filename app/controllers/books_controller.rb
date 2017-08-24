@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # book
-class BookController < ApplicationController
+class BooksController < ApplicationController
   before_action :order_item
   respond_to :html, :js, only: [:index]
 
