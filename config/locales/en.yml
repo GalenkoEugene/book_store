@@ -144,3 +144,7 @@ en:
     book: 'Book'
   date:
    month_names: [nil, 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+
+  flash:
+    coupon_applied: 'Coupon was successfully applied'
+    fake_coupon: 'Unavailable coupon, please try another'

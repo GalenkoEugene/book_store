@@ -2,7 +2,7 @@
   .row
     .col-sm-4
       .input-group.general-input-group
-        = form_tag cart_path, method: :put, remote: true
+        = form_tag cart_path, method: :put
         = label_tag :name, t('cart.coupon'), class: 'input-label'
         = text_field_tag(:name, nil, placeholder: 'Enter Your Coupon Code ', class: 'form-control mb-30')
         %div

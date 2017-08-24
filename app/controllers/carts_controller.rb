@@ -1,19 +1,20 @@
 # frozen_string_literal: true
 
 class CartsController < ApplicationController
+  attr_accessor :coupon
   before_action :order_items
-  before_action :set_coupon, only: :update
 
   def show; end
 
   def update
-    current_order.update_attributes(coupon_id: @coupon_id) if @coupon_id
+    current_order.update_attributes(coupon_id: coupon.id) if coupon
+    redirect_to cart_path, notice: coupon ? t('flash.coupon_applied') : t('flash.fake_coupon')
   end
 
   private
 
-  def set_coupon
-    @coupon_id = Coupon.find_by_name(params[:name]).try(:id) || false
+  def coupon
+    @coupon = Coupon.find_by_name(params[:name])
   end
 
   def order_items
