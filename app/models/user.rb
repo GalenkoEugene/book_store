@@ -17,7 +17,7 @@ class User < ApplicationRecord
 
   Warden::Manager.after_set_user do |user, auth, opts|
     order_id = auth.env['rack.session'][:order_id]
-    if order_id
+    if order_id && Order.exists?(order_id)
       @order = Order.find(order_id)
       @order.update_attribute(:user_id, user.id) unless @order.user_id
     end

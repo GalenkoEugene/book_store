@@ -1,7 +1,7 @@
 .col-xs-6.col-sm-3
   .general-thumb-wrap
     .thumbnail.general-thumbnail
-      %img.img-shadow.general-thumbnail-img{src: "https://d31wxntiwn0x96.cloudfront.net/rzgade/productimages/1276.jpg?width=400&height=400&etag=%22a2ebd1488b087bf0e6db43ee8bae0634%22", alt: "design-book"}
+      = image_tag img_of(book) , alt: 'design-book', class: 'img-shadow general-thumbnail-img'
       .thumb-hover
         .general-thumb-link-wrap
           = link_to book_path(book), class: 'thumb-hover-link' do

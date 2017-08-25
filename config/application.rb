@@ -13,6 +13,8 @@ require 'action_cable/engine'
 require 'sprockets/railtie'
 
 Bundler.require(*Rails.groups)
+Dotenv::Railtie.load
+HOSTNAME = ENV['HOSTNAME']
 
 module BookStore
   class Application < Rails::Application
@@ -31,5 +33,6 @@ module BookStore
       g.stylesheets false
     end
     config.assets.paths << Rails.root.join('vendor', 'assets')
+    config.assets.paths << Rails.root.join('app', 'assets','images', '*')
   end
 end

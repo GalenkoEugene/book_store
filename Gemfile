@@ -7,14 +7,18 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
 end
+gem 'dotenv-rails', groups: [:development, :test]
 gem 'activeadmin', github: 'activeadmin'
 gem 'bootstrap-sass', '3.3.7'
 gem 'cancan', '1.6.10'
+gem 'carrierwave', '~> 1.0'
 gem 'country_select'
 gem 'devise', '4.3.0'
 gem 'draper', '3.0.0'
 gem 'font-awesome-rails', '4.7.0.2'
 gem 'kaminari', '1.0.1'
+gem 'mini_magick', '~> 4.8'
+gem 'fog-aws'
 gem 'omniauth-facebook', '4.0.0'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.7'
