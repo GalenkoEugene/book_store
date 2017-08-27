@@ -15,4 +15,9 @@ module ApplicationHelper
     (link_path.include? request.GET.first.join('=')) ? 'active' : ''
     # current_page?(link_path) ? 'active' : ''
   end
+
+  def country_name(object)
+    country = ISO3166::Country[object.country]
+    country.translations[I18n.locale.to_s] || country.name
+  end
 end

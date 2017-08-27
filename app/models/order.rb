@@ -7,13 +7,14 @@ class Order < ApplicationRecord
   belongs_to :delivery, optional: true
   belongs_to :credit_card, optional: true
   has_many :order_items, dependent: :destroy
-  has_many :addresses
+  has_many :addresses, dependent: :destroy
   has_one :billing
   has_one :shipping
   before_validation :set_order_status, on: :create
   before_save :update_subtotal, :update_total, :connect_to_user
 
   scope :where_status, -> (status_name) { joins(:order_status).where(order_statuses: { name: status_name }) }
+  scope :processing_order, -> { where_status('in_queue').order('updated_at').last }
 
   def subtotal
     order_items.sum(&:total_price)
@@ -35,10 +36,15 @@ class Order < ApplicationRecord
     self.delivery.try(:price) || 0.00
   end
 
+  def finalize
+    set_order_status :in_queue
+    self.save!
+  end
+
   private
 
-  def set_order_status
-    self.order_status_id = OrderStatus.find_or_create_by(name: 'in_progress').id
+  def set_order_status(status = :in_progress)
+    self.order_status_id = OrderStatus.find_or_create_by(name: status).id
   end
 
   def update_subtotal

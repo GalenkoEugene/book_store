@@ -7,17 +7,20 @@ class CheckoutController < ApplicationController
   steps :address, :delivery, :payment, :confirm, :complete
 
   def show
-    return redirect_to catalog_path if current_order.order_items.empty?
+    return redirect_to catalog_path if current_order.order_items.empty? && step != :complete
     @addresses = AddressesForm.new(show_addresses_params)
     case step
     when :delivery
-      jump_to(previous_step) if current_order.addresses.empty?
+      jump_to(previous_step) unless current_order.addresses.presence
       @deliveries = Delivery.all
     when :payment
       jump_to(previous_step) unless current_order.delivery
       @credit_card = current_order.credit_card || CreditCard.new
     when :confirm
       jump_to(previous_step) unless current_order.credit_card
+    when :complete
+      jump_to(previous_step) unless flash[:complete_order]
+      @order = current_user.orders.processing_order.decorate
     end
     render_wizard
   end
@@ -32,6 +35,9 @@ class CheckoutController < ApplicationController
     when :payment
       @credit_card = CreditCard.new(credit_card_params)
       return errors_for(@credit_card) unless @credit_card.save
+    when :confirm
+      flash[:complete_order] = true
+      session[:order_id] = nil if current_order.finalize
     end
     redirect_to next_wizard_path
   end

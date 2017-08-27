@@ -2,9 +2,11 @@
 
 class CreditCard < ApplicationRecord
   validates :number, :name, :mm_yy, :cvv, presence: true
-  has_many :orders
+  has_one :order
 
   after_save :connect_to_order
+
+  private
 
   def connect_to_order
     user = Current.user unless Current.user.nil?
