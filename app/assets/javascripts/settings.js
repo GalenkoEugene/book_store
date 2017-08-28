@@ -27,3 +27,13 @@ function put_error_message_for_credit_card(type, data){
     $(target).next().text(data);
   }
 }
+$(document).ready(function() {
+  $( "#remove_account" ).click(function() {
+    var input = $("#remove")
+    if ( input.prop('disabled') == true ) {
+      input.prop("disabled", false);
+    } else {
+      input.prop("disabled", true);
+    }
+  });
+});

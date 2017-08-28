@@ -1,14 +1,13 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  respond_to :js
-
   def update
     if current_user.update_attributes(users_params)
-      flash.now[:success] = t('user.seccess_updating_email')
+      flash[:success] = t('user.seccess_updating_email')
     else
-      flash.now[:danger] = t('review.smth_went_wrong')
+      flash[:danger] = t('review.smth_went_wrong')
     end
+    redirect_back(fallback_location: root_path)
   end
 
   private

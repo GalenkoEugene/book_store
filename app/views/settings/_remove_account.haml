@@ -1,0 +1,10 @@
+%p.in-gold-500.font-18.mb-25= t('settings.remove_account')
+=form_for :user, url: user_registration_path, method: :delete do |f|
+  .general-settings-btn
+    = f.submit t('settings.please_remove_account'), class: 'btn btn-default mb-20', id: 'remove', disabled: true
+  .form-group.checkbox.general-settings-checkbox
+    = f.label :confirm, class: 'checkbox-label', id: 'remove_account' do
+      = f.check_box :confirm, class: 'checkbox-input', hidden: true
+      %span.checkbox-icon
+        %i.fa.fa-check
+      %span.checkbox-text= t('settings.im_agree_lost_all_data')
