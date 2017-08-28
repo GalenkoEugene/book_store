@@ -9,6 +9,7 @@ OrderStatus.delete_all
 Order.delete_all
 OrderItem.delete_all
 Coupon.delete_all
+AdminUser.delete_all
 
 authors, books = [], []
 type_of = ['Mobile development', 'Photo', 'Web design', 'Web development']
@@ -20,7 +21,7 @@ type_of.each{ |type| Category.create(type_of: type) }
 95.times do |item|
   books << {
     title: FFaker::Book.title + item.to_s,
-    price: sprintf('%0.2f', rand(5..700.0)),
+    price: sprintf('%0.2f', rand(3..150.0)),
     description: FFaker::Book.description,
     published_at: rand(1900..2017),
     height: sprintf('%0.1f', rand(0..9.0)),

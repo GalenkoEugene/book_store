@@ -26,4 +26,4 @@ database:
 ## Customize test commands
 test:
   override:
-    - bundle exec rspec spec/
+    - bundle exec rspec spec/ --format doc

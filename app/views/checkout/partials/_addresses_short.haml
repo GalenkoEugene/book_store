@@ -1,6 +1,7 @@
 %p.general-address
   = address.first_name + ' ' + address.last_name
-  %span.general-edit.clickable-step{ 'data-href': wizard_path(:address) }=t('confirm.edit') if step != :complete
+  - if step != :complete
+    %span.general-edit.clickable-step{ 'data-href': wizard_path(:address) }=t('confirm.edit')
   %br
   = address.address
   %br
@@ -8,4 +9,4 @@
   %br
   = country_name address
   %br
-  = 'Phone' + address.phone
+  = 'Phone ' + address.phone

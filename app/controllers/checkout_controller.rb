@@ -49,7 +49,7 @@ class CheckoutController < ApplicationController
   end
 
   def show_addresses_params
-    return { user_id: current_user.id }  if current_order.addresses.empty?
+    return { user_id: current_user.id } if current_order.addresses.empty?
     { order_id: current_order.id }
   end
 

@@ -9,6 +9,7 @@ en:
     my_account: 'My account'
     sign_up: 'Sign up'
     back_to_store: 'Back to Store'
+    back_to_orders: 'Back to Orders'
     forgot_password: 'Forgot password?'
     resend_passwd_instruction: 'Email Instructions'
     type_new_passwd: 'Type a new Password'

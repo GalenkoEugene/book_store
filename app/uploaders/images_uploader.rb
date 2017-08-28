@@ -1,5 +1,6 @@
 # require 'mini_magick'
 
+# Photo uloader for Books
 class ImagesUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
   storage :fog
@@ -22,7 +23,7 @@ class ImagesUploader < CarrierWave::Uploader::Base
   # end
 
   def extension_whitelist
-    %w(jpg jpeg gif png bmp)
+    %w[jpg jpeg gif png bmp]
   end
 
   def filename
