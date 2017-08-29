@@ -150,3 +150,5 @@ en:
   flash:
     coupon_applied: 'Coupon was successfully applied'
     fake_coupon: 'Unavailable coupon, please try another'
+  notice:
+    wrong_password: 'Please enter correct password'

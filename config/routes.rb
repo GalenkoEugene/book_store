@@ -15,4 +15,7 @@ Rails.application.routes.draw do
   resources :orders
   resources :checkout
   resources :credit_card
+  resources :users do
+    put 'update_password', on: :member
+  end
 end
