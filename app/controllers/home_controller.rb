@@ -4,6 +4,6 @@
 class HomeController < ApplicationController
   def index
     @latest_books = Book.includes(:authors).last 3
-    @best_sellers = Book.includes(:authors).first 4
+    @best_sellers = Book.best_sellers.first 4
   end
 end

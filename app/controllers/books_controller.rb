@@ -7,7 +7,7 @@ class BooksController < ApplicationController
 
   def index
     filters
-    books = Book.by_category(params[:category]).includes(:authors)
+    books = Book.by_category(params[:category]).includes(:authors, :images)
     @books = BooksQuery.new(books).run(params[:filter]).page(params[:page])
   end
 

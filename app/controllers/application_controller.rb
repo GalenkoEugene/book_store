@@ -8,6 +8,6 @@ class ApplicationController < ActionController::Base
   around_action :set_current_user
 
   def categories
-    @categories = Category.includes(:books).all || Category.none
+    @categories = Category.with_counted_books || Category.none
   end
 end

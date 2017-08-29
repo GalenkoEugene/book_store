@@ -8,7 +8,7 @@
       %li.mr-35
         = link_to catalog_path, class: 'filter-link' do
           = t('button.all')
-          %span.badge.general-badge= Book.count
+          %span.badge.general-badge= @categories.sum(&:books_count)
       = render @categories
   .dropdowns.mb-25.visible-xs
     %p.lead.small.mb-10= t('page.book.index.by_category')

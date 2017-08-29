@@ -10,6 +10,7 @@ class Order < ApplicationRecord
   has_many :addresses, dependent: :destroy
   has_one :billing
   has_one :shipping
+  has_many :books, through: :order_items
   before_validation :set_order_status, on: :create
   before_save :update_subtotal, :update_total, :connect_to_user
 
