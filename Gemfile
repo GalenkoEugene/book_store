@@ -58,6 +58,7 @@ group :development do
 end
 
 group :test do
+  gem 'shoulda-callback-matchers', '~> 1.1.4'
   gem 'capybara', '~> 2.14.4'
   gem 'capybara-webkit'
   gem 'database_cleaner'

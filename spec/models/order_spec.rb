@@ -60,5 +60,57 @@ RSpec.describe Order, type: :model do
         expect(statuses.uniq).to eq ['delivered']
       end
     end
+
+    context 'find processing_order "in_queue" for last checkout step' do
+      before { FactoryGirl.create(:order, :in_queue) }
+      it 'finds processing_order' do
+        expect(Order.processing_order.order_status.name).to eq 'in_queue'
+      end
+    end
+  end
+
+  context "callbacks" do
+    it { expect(subject).to callback(:update_subtotal).before(:save) }
+    it { expect(subject).to callback(:update_total).before(:save) }
+    it { expect(subject).to callback(:connect_to_user).before(:save) }
+    it { expect(subject).to callback(:set_order_status).before(:validation).on(:create) }
+  end
+
+  describe 'public methods' do
+    context 'responds to its methods' do
+      it { expect(subject).to respond_to(:subtotal_item_total) }
+      it { expect(subject).to respond_to(:shipping_price) }
+      it { expect(subject).to respond_to(:subtotal) }
+      it { expect(subject).to respond_to(:discount) }
+      it { expect(subject).to respond_to(:finalize) }
+      it { expect(subject).to respond_to(:total) }
+    end
+
+    describe '#discount' do
+      let(:order) { FactoryGirl.create(:order, coupon: coupon) }
+
+      context 'when apply coupon' do
+        let(:coupon) { FactoryGirl.create(:coupon, value: 7.00) }
+        it 'return amount of discount' do
+          expect(order.discount).to eq 7.00
+        end
+      end
+
+      context 'when no coupon' do
+        let(:coupon) { nil }
+        it 'return zero' do
+          expect(order.discount).to eq 0.00
+        end
+      end
+    end
+
+    describe '#subtotal' do
+      let(:book) { FactoryGirl.create(:book, cost: 3.5) }
+      let(:order_item) { FactoryGirl.create(:order_item, book: book, quantity: 2) }
+      it 'sum all items in order' do
+        subject =  FactoryGirl.build(:order, order_items: [order_item])
+        expect(subject.subtotal.to_f).to eq 7.0
+      end
+    end
   end
 end

@@ -4,8 +4,12 @@ require 'ffaker'
 
 FactoryGirl.define do
   factory :book do
+    transient do
+      cost 35.00
+    end
+
+    price 1.0
     sequence(:title)  { |i| FFaker::Book.title + i.to_s }
-    price 35.00
     description FFaker::Book.description
     published_at 2015
     height 1.1
@@ -13,5 +17,9 @@ FactoryGirl.define do
     depth 0.8
     materials 'paper, silk'
     association :category
+
+    after(:create) do |book, evaluator|
+      book.price= evaluator.cost
+    end
   end
 end
