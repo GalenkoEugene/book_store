@@ -16,6 +16,7 @@ class Order < ApplicationRecord
 
   scope :where_status, -> (status_name) { joins(:order_status).where(order_statuses: { name: status_name }) }
   scope :processing_order, -> { where_status('in_queue').order('updated_at').last }
+  scope :in_progress, -> { where_status('in_progress').first.try(:id) }
 
   def subtotal
     order_items.sum(&:total_price)
