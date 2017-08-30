@@ -2,6 +2,7 @@
 
 require 'capybara/rspec'
 require 'capybara/webkit/matchers'
+require 'factory_girl_rails'
 Capybara.javascript_driver = :webkit
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
@@ -29,7 +30,7 @@ RSpec.configure do |config|
   #
   Kernel.srand config.seed
 =end
-
+  config.include FactoryGirl::Syntax::Methods
   config.before(:suite) do
     DatabaseCleaner.clean_with :truncation
     DatabaseCleaner.strategy = :transaction

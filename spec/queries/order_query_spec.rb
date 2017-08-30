@@ -5,9 +5,8 @@ require 'rails_helper'
 RSpec.describe OrdersQuery, type: :model do
   before(:all) do
     @user = FactoryGirl.create(:user)
-    in_progress = FactoryGirl.create(:order_status, name: 'in_progress')
     in_delivery = FactoryGirl.create(:order_status, name: 'in_delivery')
-    3.times { FactoryGirl.create(:order, order_status: in_progress, user: @user) }
+    3.times { FactoryGirl.create(:order, :in_progress, user: @user) }
     2.times { FactoryGirl.create(:order, order_status: in_delivery, user: @user) }
   end
   subject { OrdersQuery.new(@user.orders) }

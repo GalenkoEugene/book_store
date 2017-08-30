@@ -29,11 +29,10 @@ function put_error_message_for_credit_card(type, data){
 }
 $(document).ready(function() {
   $( "#remove_account" ).click(function() {
-    var input = $("#remove")
-    if ( input.prop('disabled') == true ) {
-      input.prop("disabled", false);
+    if ( $("#remove").prop('disabled') ) {
+      $("#remove").prop('disabled', '');
     } else {
-      input.prop("disabled", true);
+      $("#remove").prop('disabled', 'disabled');
     }
   });
 });
