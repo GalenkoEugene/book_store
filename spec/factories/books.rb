@@ -21,5 +21,11 @@ FactoryGirl.define do
     after(:create) do |book, evaluator|
       book.price= evaluator.cost
     end
+
+    factory :book_with_review do
+      after(:create) do |book, _evaluator|
+        create_list(:review, 3, book_id: book.id)
+      end
+    end
   end
 end
