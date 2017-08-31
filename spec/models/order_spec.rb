@@ -30,14 +30,16 @@ RSpec.describe Order, type: :model do
 
   describe 'scopes' do
     before(:all) do
-      @in_progress_id = FactoryGirl.create(:order, :in_progress).id
+      @order = FactoryGirl.create(:order, :in_progress)
       @wrong_ids = []
       2.times { @wrong_ids << FactoryGirl.create(:order, :delivered).id }
     end
 
     context 'order_id where status in progress' do
       it 'finds order_id with status in_progress' do
-        expect(Order.in_progress).to eq @in_progress_id
+        user = @order.user
+        FactoryGirl.create_list(:order, 2, :in_queue, user: user)
+        expect(user.orders.in_progress).to eq @order.id
       end
 
       it 'not eq other status' do
