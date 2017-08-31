@@ -9,4 +9,17 @@ RSpec.describe Review, type: :model do
   }
   it { expect(subject).to belong_to :user }
   it { expect(subject).to belong_to :book }
+
+  describe 'scopes' do
+    before do
+      FactoryGirl.create_list(:review, 3, status: true)
+      FactoryGirl.create_list(:review, 2, status: false)
+    end
+
+    context 'approved' do
+      it 'finds approved reviews' do
+        expect(Review.approved.map(&:status).sample).to be true
+      end
+    end
+  end
 end
