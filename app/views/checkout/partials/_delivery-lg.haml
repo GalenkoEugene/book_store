@@ -8,7 +8,7 @@
       %th
         %span.in-grey-600= t('delivery.price')
   %tbody
-    = f.collection_radio_buttons :delivery_id, @deliveries, :id, :method do |b|
+    = f.collection_radio_buttons :delivery_id, @deliveries, :id, :name do |b|
       %tr
         %td
           .form-group.radio.mt-0.mb-0

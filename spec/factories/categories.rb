@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :category do
-    type_of { FFaker::Lorem.phrase }
+    sequence(:type_of) { |i| FFaker::Lorem.phrase + i.to_s }
   end
 end

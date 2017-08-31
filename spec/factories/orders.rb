@@ -4,6 +4,7 @@ FactoryGirl.define do
     total 1
     order_status
     user
+    delivery
 
     trait :in_progress do
       after(:create) do |order|

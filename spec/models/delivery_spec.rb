@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Delivery, type: :model do
-  it { expect(subject).to validate_presence_of :method }
+  it { expect(subject).to validate_presence_of :name }
   it { expect(subject).to validate_presence_of :price }
   it { expect(subject).to validate_presence_of :duration }
   it { expect(subject).to have_many :orders }
@@ -12,7 +12,7 @@ RSpec.describe Delivery, type: :model do
         .is_greater_than_or_equal_to 0.01
     }
   it {
-      expect(subject).to validate_length_of(:method)
+      expect(subject).to validate_length_of(:name)
         .is_at_least(3).is_at_most(100)
     }
 end
