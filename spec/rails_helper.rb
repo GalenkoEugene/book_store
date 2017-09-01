@@ -14,7 +14,7 @@ Dir[Rails.root.join('spec/models/shared_examples/**/*.rb')].each { |f| require f
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
-  config.use_transactional_fixtures = false
+  config.use_transactional_fixtures = true
   # https://relishapp.com/rspec/rspec-rails/docs
   # Warden.test_mode!
   # config.after { Warden.test_reset! }

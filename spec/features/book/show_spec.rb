@@ -23,21 +23,21 @@ RSpec.feature 'Book page', type: :feature do
     it { expect(subject).to have_content @book.published_at }
   end
 
-  # context 'short description' do
-  #   it "'Read More' button absent", js: true do
-  #     @book.description= 'text ' * 3
-  #     @book.save!
-  #     visit book_path(@book)
-  #     expect(subject).not_to have_content 'Read More'
-  #   end
-  # end
+  context 'short description' do
+    it "'Read More' button absent", js: true do
+      @book.description= 'text ' * 3
+      @book.save!
+      visit book_path(@book)
+      expect(page).not_to have_content 'Read More'
+    end
+  end
 
   # context 'long description' do
   #   it "'Read More' button present", js: true do
-  #     @book.description= 'text ' * 300
+  #     @book.description= 'text ' * 400
   #     @book.save!
   #     visit book_path(@book)
-  #     expect(subject).to have_content 'Read More'
+  #     expect(page).to have_content 'Read More'
   #   end
   # end
 end
