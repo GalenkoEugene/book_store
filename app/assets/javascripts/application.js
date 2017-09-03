@@ -13,4 +13,5 @@
 //= require jquery3
 //= require bootstrap-sprockets
 //= require rails-ujs
+//= require jquery.mask
 //= require_tree .

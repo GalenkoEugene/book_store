@@ -126,6 +126,7 @@ en:
     method: 'Method'
     days: 'Days'
     price: 'Price'
+    pickup: 'Please, pick up Delivery type!'
 
   credit_card:
     tooltip: '3-digit security code, usually found on the back of your card. American Express cards has 4-digit code, located on the front'

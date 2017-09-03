@@ -32,6 +32,7 @@ class CheckoutController < ApplicationController
       return errors_for(@addresses) unless @addresses.save
     when :delivery
       current_order.update_attributes(order_params)
+      flash[:notice] = t('delivery.pickup') if current_order.delivery_id.nil?
     when :payment
       @credit_card = CreditCard.new(credit_card_params)
       return errors_for(@credit_card) unless @credit_card.save

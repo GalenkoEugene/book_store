@@ -20,7 +20,7 @@
       .col-sm-3
         .form-group.relative
           = f.label :cvv, 'CVV', class: 'control-label input-label'
-          = f.text_field :cvv, class: 'form-control', placeholder: 'CVV'
+          = f.password_field :cvv, class: 'form-control', placeholder: 'CVV', autocomplete: 'off'
           %span.help-block
           %i.fa.fa-question-circle.general-form-help{'data-toggle': 'tooltip', 'data-placement': :top, title: t('credit_card.tooltip')}
     = render 'checkout/order_summary'

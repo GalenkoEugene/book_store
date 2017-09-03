@@ -10,7 +10,7 @@
     .col-sm-3
       %h3.general-subtitle= t('confirm.shipments')
       %p.general-address
-        = current_order.delivery.method
+        = current_order.delivery.name
         %span.general-edit.clickable-step{ 'data-href': wizard_path(:delivery) }=t('confirm.edit')
         %br
         = current_order.delivery.duration

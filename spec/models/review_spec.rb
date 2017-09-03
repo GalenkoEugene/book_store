@@ -9,6 +9,8 @@ RSpec.describe Review, type: :model do
   }
   it { expect(subject).to belong_to :user }
   it { expect(subject).to belong_to :book }
+  it { expect(subject).to allow_value('Hello, world').for(:context) }
+  it { expect(subject).not_to allow_value('H#llo, w@rld!!!').for(:context) }
 
   describe 'scopes' do
     before do

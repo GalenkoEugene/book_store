@@ -7,18 +7,19 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
 end
-gem 'dotenv-rails', groups: [:development, :test]
 gem 'activeadmin', github: 'activeadmin'
 gem 'bootstrap-sass', '3.3.7'
-gem 'cancan', '1.6.10'
+gem 'cancancan', '~> 2.0'
 gem 'carrierwave', '~> 1.0'
 gem 'country_select'
 gem 'devise', '4.3.0'
+gem 'dotenv-rails', groups: %i[development test]
 gem 'draper', '3.0.0'
+gem 'fog-aws'
 gem 'font-awesome-rails', '4.7.0.2'
 gem 'kaminari', '1.0.1'
+gem 'jquery_mask_rails', '~> 0.1'
 gem 'mini_magick', '~> 4.8'
-gem 'fog-aws'
 gem 'omniauth-facebook', '4.0.0'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.7'
@@ -58,11 +59,11 @@ group :development do
 end
 
 group :test do
-  gem 'shoulda-callback-matchers', '~> 1.1.4'
   gem 'capybara', '~> 2.14.4'
   gem 'capybara-webkit'
   gem 'database_cleaner'
   gem 'ffaker', '~> 2.6.0'
+  gem 'shoulda-callback-matchers', '~> 1.1.4'
   gem 'shoulda-matchers', '~> 3.1.2'
 end
 

@@ -9,6 +9,13 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: [:facebook]
 
   validates_uniqueness_of :uid, unless: Proc.new { provider.nil? }, scope: :provider
+  validates :email, format: {
+    with: /\A[^-.]\w+[-.]?(\w+[-!#$%&'*+\/=?^_`{|}~.]\w+)*[^-]@([\w\d]+)\.([\w\d]+)\z/
+  }
+  validates :password, format: {
+    with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)\S{8,}\z/
+  }
+
   has_many :reviews
   has_many :addresses
   has_many :orders
