@@ -1,31 +1,25 @@
 # frozen_string_literal: true
 
 class OrderItemsController < ApplicationController
-  before_action :order
-
   def create
-    @order_item = @order.order_items.find_or_initialize_by(book_id: order_item_params[:book_id])
+    @order_item = current_order.order_items.find_or_initialize_by(book_id: order_item_params[:book_id])
     update_quantity.save
-    session[:order_id] = @order.id
+    session[:order_id] = current_order.id
   end
 
   def update
-    @order_item = @order.order_items.find(params[:id])
+    @order_item = current_order.order_items.find(params[:id])
     @order_item.update_attributes(order_item_params)
-    @order_items = @order.order_items
+    @order_items = current_order.order_items
   end
 
   def destroy
-    @order_item = @order.order_items.find(params[:id])
+    @order_item = current_order.order_items.find(params[:id])
     @order_item.destroy
-    @order_items = @order.order_items
+    @order_items = current_order.order_items
   end
 
   private
-
-  def order
-    @order = current_order
-  end
 
   def order_item_params
     params.require(:order_item).permit(:quantity, :book_id)

@@ -58,6 +58,6 @@ class Order < ApplicationRecord
   end
 
   def connect_to_user
-    self[:user_id] = Current.user.id unless Current.user.nil?
+    self[:user_id] = CurrentSession.user.id unless CurrentSession.user.nil?
   end
 end

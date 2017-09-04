@@ -15,7 +15,7 @@ class CreditCard < ApplicationRecord
   private
 
   def connect_to_order
-    user = Current.user unless Current.user.nil?
+    user = CurrentSession.user unless CurrentSession.user.nil?
     user.orders.where_status(:in_progress).first.update_attributes(credit_card_id: self.id)
   end
 
