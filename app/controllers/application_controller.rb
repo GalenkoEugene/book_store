@@ -10,4 +10,8 @@ class ApplicationController < ActionController::Base
   def categories
     @categories = Category.with_counted_books || Category.none
   end
+
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_path, notice: exception.message
+  end
 end

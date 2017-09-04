@@ -3,11 +3,16 @@ class Ability
 
   def initialize(user)
     user ||= User.new
-    can :read, :all
-    can :create, Review, user_id: user.id
-    can %i[create update], Order, user_id: user.id
-    can %i[create update], OrderItem, user_id: user.id
-    can %i[create update], Address, user_id: user.id
-    can %i[create update], CreditCard, user_id: user.id
+    if user.persisted?
+      can :read, :all
+      cannot :read, Order
+      can :read, Review, status: true
+      can :read, Order, user_id: user.id
+      can :create, Review
+      can %i[create update], [Order, OrderItem, Address, CreditCard], user_id: user.id
+    else
+      can :read, [Review, Book, Image]
+      can %i[create read update], Order, OrderItem
+    end
   end
 end

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class OrdersController < ApplicationController
+  load_and_authorize_resource
   def index
     @orders = OrdersQuery.new(current_user.orders).run(params[:filter]).decorate
   end

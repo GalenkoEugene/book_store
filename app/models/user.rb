@@ -22,6 +22,10 @@ class User < ApplicationRecord
   has_one :billing
   has_one :shipping
 
+  def order_in_progress
+    self.orders.where_status('in_progress').first
+  end
+
   Warden::Manager.after_set_user do |user, auth, opts|
     order_id = auth.env['rack.session'][:order_id]
     if order_id && Order.exists?(order_id)

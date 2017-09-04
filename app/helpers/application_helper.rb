@@ -6,7 +6,7 @@ module ApplicationHelper
   end
 
   def shop_icon_quantity(order)
-    qty = order.order_items.collect(&:quantity).sum
+    qty = order.order_items.collect(&:quantity).compact.sum
     "<span class='shop-quantity'>#{qty}</span>".html_safe unless qty.zero?
   end
 

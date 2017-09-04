@@ -10,8 +10,8 @@ namespace :db do
     ]
 
     deliveries.each do |type|
-      Delivery.find_or_create_by(method: type[0]) do |deliv|
-        deliv.method = type[0]
+      Delivery.find_or_create_by(name: type[0]) do |deliv|
+        deliv.name = type[0]
         deliv.duration = type[1]
         deliv.price = type[2]
       end
