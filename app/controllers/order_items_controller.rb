@@ -4,6 +4,7 @@ class OrderItemsController < ApplicationController
   def create
     @order_item = current_order.order_items.find_or_initialize_by(book_id: order_item_params[:book_id])
     update_quantity.save
+    current_order.save
     session[:order_id] = current_order.id
   end
 

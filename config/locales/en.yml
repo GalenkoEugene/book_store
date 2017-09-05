@@ -27,6 +27,7 @@ en:
     hight_to_low: 'Price: Hight to low'
     title_A-Z: 'Title A - Z'
     title_Z-A: 'Title Z - A'
+    get_started: 'Get Started'
 
   header:
     logo: 'Bookstore'

@@ -10,7 +10,7 @@ FactoryGirl.define do
     address { FFaker::AddressUS.street_address }
     city { FFaker::AddressUS.city }
     zip { FFaker::AddressUS.zip_code }
-    country { FFaker::AddressUS.country.gsub(/,/, '') }
+    country { FFaker::AddressUS.country.gsub(/[\W_]/, '') }
     phone '+12345678910'
     user
     order

@@ -16,6 +16,6 @@ namespace :db do
         deliv.price = type[2]
       end
     end
-    puts ' Delivery types succesfuly saved to DB '.center(80, '=')
+    puts ' Delivery types successfully saved to DB '.center(80, '=')
   end
 end

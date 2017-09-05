@@ -9,6 +9,6 @@ namespace :db do
         item.value = "#{coupon}.00".to_f
       end
     end
-    puts ' Coupons was succesfuly saved to DB '.center(80, '=')
+    puts ' Coupons was successfully saved to DB '.center(80, '=')
   end
 end
