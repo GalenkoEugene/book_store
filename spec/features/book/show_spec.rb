@@ -75,4 +75,45 @@ RSpec.feature 'Book page', type: :feature do
       expect(shop_icon).to have_content '1'
     end
   end
+
+  describe 'Review' do
+    let(:post_review_form) { page.find('#post_review') }
+    before do
+      sign_in_as_user
+      visit book_path(@book)
+    end
+
+    it 'show form for review' do
+      expect(page).to have_content I18n.t('review.write')
+      expect(page).to have_css('#post_review')
+    end
+
+    it 'can rate book' do
+      expect(page).to have_content('Score')
+    end
+
+    it 'can post revire', js: true do
+      fill_in 'review[context]', with: 'It was the best book in my life'
+      click_on I18n.t('button.post')
+      expect(page).to have_content I18n.t('review.thanks_message')
+    end
+
+    it 'do not save unpermited review', js: true do
+      fill_in 'review[context]', with: '!@#$#%^$^%&^**&((/'
+      click_on I18n.t('button.post')
+      expect(page).to have_content I18n.t('review.smth_went_wrong')
+    end
+
+    context 'User Log Out' do
+      before { find(:log_out).click }
+
+      it 'cannot write a review' do
+        expect(page).not_to have_content I18n.t('review.write')
+      end
+
+      it 'hide form' do
+        expect(page).not_to have_css('#post_review')
+      end
+    end
+  end
 end

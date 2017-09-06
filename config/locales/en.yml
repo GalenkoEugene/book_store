@@ -28,6 +28,7 @@ en:
     title_A-Z: 'Title A - Z'
     title_Z-A: 'Title Z - A'
     get_started: 'Get Started'
+    post: 'Post'
 
   header:
     logo: 'Bookstore'
