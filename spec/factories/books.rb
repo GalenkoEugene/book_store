@@ -5,7 +5,8 @@ require 'ffaker'
 FactoryGirl.define do
   factory :book do
     transient do
-      cost 35.00
+      cost 555.55
+      category_name { FactoryGirl.create(:category).id }
     end
 
     price 1.0
@@ -16,7 +17,12 @@ FactoryGirl.define do
     weight 2.0
     depth 0.8
     materials 'paper, silk'
-    association :category
+    category
+
+    before(:create) do |book, evaluator|
+      book.category_id= (Category.find_by_type_of(evaluator.category_name) ||
+        FactoryGirl.create(:category, type: evaluator.category_name)).id
+    end
 
     after(:create) do |book, evaluator|
       book.price= evaluator.cost

@@ -8,12 +8,11 @@ RSpec.describe Category, type: :model do
 
   describe 'scopes' do
     describe '#with_counted_books' do
-      let(:mobile) { FactoryGirl.create(:category, type: :mobile) }
-      let(:web) { FactoryGirl.create(:category, type: :web) }
-
-      before do
-        FactoryGirl.create_list(:book, 8, category: web)
-        FactoryGirl.create_list(:book, 15, category: mobile)
+      before(:all) do
+        Book.destroy_all
+        Category.destroy_all
+        FactoryGirl.create_list(:book, 8, category_name: :web)
+        FactoryGirl.create_list(:book, 15, category_name: :mobile)
       end
 
       it { expect(Category.with_counted_books.length).to eq 2 }

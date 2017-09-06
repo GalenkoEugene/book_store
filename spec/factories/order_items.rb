@@ -1,9 +1,5 @@
 FactoryGirl.define do
   factory :order_item do
-    transient do
-      book_id = nil
-    end
-
     association :book
     association :order
     unit_price 1.0
