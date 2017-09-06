@@ -2,11 +2,13 @@
 
 module CurrentSession
   thread_mattr_accessor :user
+  attr_reader :back
 
   extend ActiveSupport::Concern
   included do
     helper_method :set_current_user
     helper_method :current_order
+    helper_method :back
   end
 
   def current_order
@@ -19,5 +21,11 @@ module CurrentSession
     yield
   ensure
     CurrentSession.user = nil
+  end
+
+  def set_back_path
+    session[:previous_request_url] = session[:current_request_url]
+    session[:current_request_url] = request.path if request.path.match /\/(catalog|home)/
+    @back = session[:previous_request_url]
   end
 end

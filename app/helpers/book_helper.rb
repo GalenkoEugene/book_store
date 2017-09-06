@@ -32,6 +32,10 @@ module BookHelper
     book.images&.first&.file || default_image
   end
 
+  def go_back
+    @back || root_path
+  end
+
   private
 
   def default_image

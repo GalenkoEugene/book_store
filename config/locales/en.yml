@@ -82,6 +82,7 @@ en:
     write: 'Write a Review'
     thanks_message: 'Thanks for Review. It will be published as soon as Admin will approve it.'
     smth_went_wrong: 'Something went wrong.'
+    score: 'Score'
 
   settings:
     settings: 'Settings'

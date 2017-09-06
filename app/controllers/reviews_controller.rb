@@ -1,11 +1,10 @@
 # frozen_string_literal: true
 
 class ReviewsController < ApplicationController
-  respond_to :js
   def create
     @review = Review.new(review_params)
-    return flash.now[:success] = t('review.thanks_message') if @review.save
-    flash.now[:danger] = t('review.smth_went_wrong')
+    @review.save ? flash[:success] = t('review.thanks_message') : flash[:danger] = t('review.smth_went_wrong')
+    redirect_back(fallback_location: root_path)
   end
 
   private

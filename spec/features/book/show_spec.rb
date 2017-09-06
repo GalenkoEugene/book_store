@@ -92,13 +92,13 @@ RSpec.feature 'Book page', type: :feature do
       expect(page).to have_content('Score')
     end
 
-    it 'can post revire', js: true do
+    it 'can post revire' do
       fill_in 'review[context]', with: 'It was the best book in my life'
       click_on I18n.t('button.post')
       expect(page).to have_content I18n.t('review.thanks_message')
     end
 
-    it 'do not save unpermited review', js: true do
+    it 'do not save unpermited review' do
       fill_in 'review[context]', with: '!@#$#%^$^%&^**&((/'
       click_on I18n.t('button.post')
       expect(page).to have_content I18n.t('review.smth_went_wrong')
