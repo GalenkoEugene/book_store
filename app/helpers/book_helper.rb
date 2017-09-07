@@ -33,7 +33,7 @@ module BookHelper
   end
 
   def go_back
-    @back || root_path
+    @back || :back
   end
 
   private

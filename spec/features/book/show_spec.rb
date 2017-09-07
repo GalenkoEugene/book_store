@@ -116,4 +116,40 @@ RSpec.feature 'Book page', type: :feature do
       end
     end
   end
+
+  describe 'Back to results' do
+    let(:go_back) { page.find('a.general-back-link') }
+    let(:visit_book_path_and_click_go_back) do
+      visit book_path(@book)
+      expect(page.current_path).to eq book_path(@book)
+      go_back.click
+    end
+
+    context "come from 'catalog' page" do
+      it 'return back to catalog' do
+        visit catalog_path
+        expect(page.current_path).to eq catalog_path
+        visit_book_path_and_click_go_back
+        expect(page.current_path).to eq catalog_path
+      end
+    end
+
+    context "come from 'home' page" do
+      it 'return back to home' do
+        visit home_path
+        expect(page.current_path).to eq home_path
+        visit_book_path_and_click_go_back
+        expect(page.current_path).to eq home_path
+      end
+    end
+
+    context "come from 'cart' page" do
+      it 'return to cart path', js: true do
+        visit cart_path
+        expect(page.current_path).to eq cart_path
+        visit_book_path_and_click_go_back
+        expect(page.current_path).to eq cart_path
+      end
+    end
+  end
 end
