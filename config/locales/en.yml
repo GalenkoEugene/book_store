@@ -156,3 +156,17 @@ en:
     fake_coupon: 'Unavailable coupon, please try another'
   notice:
     wrong_password: 'Please enter correct password'
+
+  checkout:
+    save_and_continue: 'Save and Continue'
+    place_order: 'Place Order'
+    cart_number: 'Card Number'
+    credit_card: 'Credit Card'
+    name_on_card: 'Name on Card'
+    mm_yy: 'MM / YY'
+    cvv: 'CVV'
+
+  validation:
+    cart_number: 'Please enter a valid credit card number'
+    cart_name: 'Allow only letters'
+    mm_yy: 'Mons can be from 01 to 12'

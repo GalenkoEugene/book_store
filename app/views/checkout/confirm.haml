@@ -24,4 +24,4 @@
   = render 'checkout/partials/list_of_items'
   = render 'checkout/order_summary'
   .text-center
-    = button_to 'Place Order', wizard_path, method: :put, class: 'btn btn-default mb-20'
+    = button_to t('checkout.place_order'), wizard_path, method: :put, class: 'btn btn-default mb-20'

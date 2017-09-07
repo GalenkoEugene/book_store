@@ -44,7 +44,7 @@ RSpec.feature 'Cart page', type: :feature do
       it 'recalculate Order Total price'
     end
 
-    context 'click minus', :skip do
+    context 'click minus' do
       it 'increase amount of books in shopping cart'
       it 'increase Quantity field'
       it 'recalculate SubTotal price'
@@ -52,7 +52,8 @@ RSpec.feature 'Cart page', type: :feature do
     end
 
     context 'click Item details' do
-      it 'go to book show page'
+      it 'go to book show page' do
+      end
       context 'click Back to results' do
         it 'return back to shopping cart'
       end
@@ -60,29 +61,69 @@ RSpec.feature 'Cart page', type: :feature do
 
     describe 'Coupon' do
       context 'upply valid coupon' do
-        it 'show success message'
-        it 'set discount'
-        it 'do not recalculate SubTotal price'
-        it 'recalculate Order Total price'
+        let(:coupon) { FactoryGirl.create(:coupon, name: 'valid_coupon_ok', value: 99.9) }
+
+        before do
+          fill_in I18n.t('cart.coupon'), with: coupon.name
+          click_on I18n.t('cart.update')
+        end
+
+        it 'show success message' do
+          expect(page).to have_content I18n.t('flash.coupon_applied')
+        end
+
+        it 'set discount' do
+          expect(page).to have_content coupon.value
+        end
       end
 
       context 'try to apply invalid coupon' do
-        it 'show error message'
-        it 'do nothing with Order Total and SubTotal prices'
+        let(:invalid_coupon) { 'invalid_coupon' }
+
+        before do
+          fill_in I18n.t('cart.coupon'), with: invalid_coupon
+          click_on I18n.t('cart.update')
+        end
+
+        it 'show error message' do
+          expect(page).to have_content I18n.t('flash.fake_coupon')
+        end
       end
     end
 
     describe 'Checkout' do
+      context 'guest user', :skip do
+        it 'transferred to the Checkout Login page', js: true do
+          visit home_path
+          find('input[value="Buy Now"]').click
+          find('a.shop-link.pull-right.hidden-xs').click
+          click_on 'Checkout'
+          expect(page).to have_content 'Returning Customer'
+          expect(page).to have_content 'New Customer'
+          expect(page).to have_content 'Quick Register'
+        end
+      end
+
+
+
       context 'loged in user' do
-        it 'transferred to the Checkout page, the Addresses tab'
-      end
+        before { sign_in_as_user }
 
-      context 'guest user' do
-        it 'transferred to the Checkout Login page'
-      end
+        context 'empty cart' do
+          it 'redirect to catalog page' do
+            find('a.shop-link.pull-right.hidden-xs').click
+            click_on 'Checkout'
+            expect(page).to have_content I18n.t('page.book.index.catalog')
+          end
+        end
 
-      context 'empty cart' do
-        it 'redirect to catalog page'
+        it 'transferred to the Checkout page, the Addresses tab', js: true do
+          find('input[value="Buy Now"]').click
+          find('a.shop-link.pull-right.hidden-xs').click
+          click_on 'Checkout'
+          expect(page).to have_content I18n.t('settings.billing')
+          expect(page).to have_content I18n.t('settings.shipping')
+        end
       end
     end
   end
