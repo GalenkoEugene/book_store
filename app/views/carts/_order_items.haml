@@ -1,9 +1,9 @@
 - @order_items.each do |order_item|
   %tr
-    %td
+    %td.clickable-step{ 'data-href': book_path(order_item.book) }
       .general-img-wrap-table
         %img.cart-img-shadow.pull-left{src: "http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
-    %td
+    %td.clickable-step{ 'data-href': book_path(order_item.book) }
       %p.title= order_item.book.title
     %td
       %span.font-16.in-gold-500= number_to_currency(order_item.book.price)
@@ -11,5 +11,5 @@
     %td
       %span.font-16.in-gold-500= number_to_currency(order_item.total_price)
     %td
-      = button_to order_item, { data: { confirm: "Are you sure you wish to delete the book '#{order_item.book.title}' from your cart?" }, method: :delete, remote: true, class: "close general-cart-close", 'aria-label': 'Close' } do
+      = button_to order_items_path(order_item), { data: { confirm: "Are you sure you wish to delete the book '#{order_item.book.title}' from your cart?" }, method: :delete, remote: true, class: "close general-cart-close", 'aria-label': 'Close' } do
         %span{'aria-hidden': "true"} &times;

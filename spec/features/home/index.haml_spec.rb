@@ -22,7 +22,7 @@ RSpec.feature 'Home page', type: :feature do
       it { expect(page).to have_content 'Title A - Z' }
     end
 
-    context "'Buy now' button add one book to shoping cart" do
+    context "'Buy now' button add one book to shopping cart" do
       subject { page.find('div.carousel-inner') }
 
       before do
@@ -56,8 +56,8 @@ RSpec.feature 'Home page', type: :feature do
           expect(page).not_to have_css 'span.shop-quantity'
         end
 
-        it 'add book to shoping cart', js: true do
-          find(:shoping_cart_icon, @item.book.id).click
+        it 'add book to shopping cart', js: true do
+          find(:shopping_cart_icon, @item.book.id).click
           expect(page).to have_css 'span.shop-quantity'
           expect(quantity).to have_content '1'
         end

@@ -47,8 +47,8 @@ RSpec.feature 'Catalog page', type: :feature do
         expect(shop_icon).to have_content ''
       end
 
-      it 'add book to shoping cart', js: true do
-        find(:shoping_cart_icon, @book.id).click
+      it 'add book to shopping cart', js: true do
+        find(:shopping_cart_icon, @book.id).click
         expect(page).to have_css 'span.shop-quantity'
         expect(shop_icon).to have_content '1'
       end

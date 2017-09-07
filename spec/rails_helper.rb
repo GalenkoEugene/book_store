@@ -35,6 +35,7 @@ RSpec.configure do |config|
   config.include FormHelpers, type: :feature
   config.include Features::SessionHelpers, type: :feature
   config.include Capybara::Webkit::RspecMatchers, type: :feature
+  config.include InjectSession, type: :feature
   config.include RedirectBack
   config.include Selectors
 end
