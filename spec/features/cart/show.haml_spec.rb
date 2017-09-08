@@ -20,10 +20,18 @@ RSpec.feature 'Cart page', type: :feature do
   end
 
   describe 'update cart' do
-    let(:qqty_input_field) { page.find('div.hidden-xs input.quantity-input') }
-    let(:plus) { find(:linkhref, "/order_items/#{@order_item.order_id}?order_item%5Bquantity%5D=#{qqty_input_field.value.to_i+1}") }
-    let(:minus) { find(:linkhref, "/order_items/#{@order_item.order_id}?order_item%5Bquantity%5D=#{qqty_input_field.value.to_i-1}") }
-    let(:cross) { find }
+    let(:shop_icon) { page.find('a.hidden-xs>span.shop-icon') }
+    let(:qqty_input) do
+      within('div.hidden-xs table') { find('input.form-control.quantity-input') }
+    end
+
+    let(:plus) do
+      within('div.hidden-xs table') { find("#order_#{@order_item.id}_plus", visible: true) }
+    end
+
+    let(:minus) do
+      within('div.hidden-xs table') { find("#order_#{@order_item.id}_minus", visible: true) }
+    end
 
     before do
       @order_item = FactoryGirl.create(:order_item)
@@ -31,31 +39,67 @@ RSpec.feature 'Cart page', type: :feature do
       visit cart_path
     end
 
-    context 'click plus', :skip do
-      it 'increase amount of books in shopping cart', js: true do
-        expect(qqty_input_field.value).to eq '1'
-        within('main div.hidden-xs') do
-          minus.click
-        end
-        expect(qqty_input_field.value).to eq '2'
+    context 'click plus', js: true do
+      it 'increase amount of books in shopping cart' do
+        expect(shop_icon).to have_content '1'
+        plus.click
+        sleep 0.2
+        expect(shop_icon).to have_content '2'
       end
-      it 'increase Quantity field'
-      it 'recalculate SubTotal price'
-      it 'recalculate Order Total price'
+
+      it 'increase Quantity field' do
+        expect(qqty_input.value).to eq '1'
+        plus.click
+        sleep 0.2
+        expect(qqty_input.value).to eq '2'
+      end
     end
 
-    context 'click minus' do
-      it 'increase amount of books in shopping cart'
-      it 'increase Quantity field'
-      it 'recalculate SubTotal price'
-      it 'recalculate Order Total price'
+    context 'click minus', js: true do
+      before do
+        plus.click
+        sleep 0.2
+      end
+
+      it 'decrease amount of books in shopping cart' do
+        expect(shop_icon).to have_content '2'
+        minus.click
+        sleep 0.2
+        expect(shop_icon).to have_content '1'
+      end
+
+      it 'decrease Quantity field' do
+        expect(qqty_input.value).to eq '2'
+        minus.click
+        sleep 0.2
+        expect(qqty_input.value).to eq '1'
+      end
+
+      it 'Quantity can not be less then one' do
+        3.times do
+          minus.click
+          sleep 0.2
+        end
+        expect(qqty_input.value).to eq '1'
+      end
     end
 
     context 'click Item details' do
       it 'go to book show page' do
+        page.find('td>a.text-as-link').click
+        expect(page.current_path).to eq book_path(@order_item.book)
+        expect(page).to have_content 'Back to results'
       end
+
       context 'click Back to results' do
-        it 'return back to shopping cart'
+        let(:go_back) { page.find('a.general-back-link') }
+
+        it 'return back to shopping cart' do
+          page.find('td>a.text-as-link').click
+          expect(page.current_path).to eq book_path(@order_item.book)
+          go_back.click
+          expect(page.current_path).to eq cart_path
+        end
       end
     end
 

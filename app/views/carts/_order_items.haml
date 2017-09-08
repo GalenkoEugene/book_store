@@ -1,10 +1,12 @@
 - @order_items.each do |order_item|
   %tr
-    %td.clickable-step{ 'data-href': book_path(order_item.book) }
+    %td
       .general-img-wrap-table
-        %img.cart-img-shadow.pull-left{src: "http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
-    %td.clickable-step{ 'data-href': book_path(order_item.book) }
-      %p.title= order_item.book.title
+        = link_to book_path(order_item.book) do
+          %img.cart-img-shadow.pull-left{src: "http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
+    %td
+      = link_to book_path(order_item.book), class: 'text-as-link' do
+        %p.title= order_item.book.title
     %td
       %span.font-16.in-gold-500= number_to_currency(order_item.book.price)
     = render 'carts/quantity', order_item: order_item
