@@ -2,14 +2,17 @@
 
 class CheckoutController < ApplicationController
   include Wicked::Wizard
-  before_action :authenticate_user!
+  before_action :fast_authentification
 
-  steps :address, :delivery, :payment, :confirm, :complete
+  steps :login, :address, :delivery, :payment, :confirm, :complete
 
   def show
     return redirect_to catalog_path if current_order.order_items.empty? && step != :complete
-    @addresses = AddressesForm.new(show_addresses_params)
     case step
+    when :login
+      jump_to(next_step) if user_signed_in?
+      cookies[:from_checkout] = { value: true, expires: 1.day.from_now } unless user_signed_in?
+    when :address then @addresses = AddressesForm.new(show_addresses_params)
     when :delivery
       jump_to(previous_step) unless current_order.addresses.presence
       @deliveries = Delivery.all
@@ -44,6 +47,11 @@ class CheckoutController < ApplicationController
   end
 
   private
+
+  def fast_authentification
+    return unless user_signed_in? and step != :login
+    jump_to(:login) unless user_signed_in?
+  end
 
   def errors_for(subject)
     render json: subject.errors, callback: 'parse_errors', status: :unprocessable_entity

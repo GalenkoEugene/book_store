@@ -136,7 +136,7 @@ RSpec.feature 'Cart page', type: :feature do
     end
 
     describe 'Checkout' do
-      context 'guest user', :skip do
+      context 'guest user' do
         it 'transferred to the Checkout Login page', js: true do
           visit home_path
           find('input[value="Buy Now"]').click
@@ -147,8 +147,6 @@ RSpec.feature 'Cart page', type: :feature do
           expect(page).to have_content 'Quick Register'
         end
       end
-
-
 
       context 'loged in user' do
         before { sign_in_as_user }

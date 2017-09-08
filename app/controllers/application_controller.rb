@@ -4,8 +4,6 @@ class ApplicationController < ActionController::Base
   include CurrentSession
   protect_from_forgery with: :exception
   before_action :categories
-  around_action :set_current_user
-  before_action :set_back_path
 
   def categories
     @categories = Category.with_counted_books || Category.none

@@ -165,6 +165,15 @@ en:
     name_on_card: 'Name on Card'
     mm_yy: 'MM / YY'
     cvv: 'CVV'
+    returning_customer: 'Returning Customer'
+    or: 'or'
+    login_with_password: 'Log in with password'
+    enter_email: 'Enter Email'
+    new_customer: 'New Customer'
+    quick_register: 'Quick Register'
+    quick_description: "You'll be able to create password later"
+    continue: 'Continue to Checkout'
+
 
   validation:
     cart_number: 'Please enter a valid credit card number'
