@@ -12,11 +12,13 @@
           %h3.general-subtitle.mt-0= t('settings.billing')
         = f.fields_for @addresses.billing do |ff|
           = render 'shared/address', ff: ff
+          = f.hidden_field "[billing][user_id]", value: current_user.id
       .col-md-5.col-md-offset-1.mb-25
         .visible-xs.visible-sm
           %h3.general-subtitle.mt-0= t('settings.shipping')
         = f.fields_for @addresses.shipping do |ff|
           = render 'shared/address', ff: ff
+          = f.hidden_field "[billing][userr_id]", value: current_user.id
         .form-group.checkbox
           %label.checkbox-label
             = f.check_box :use_billing, class: 'checkbox-input', id: 'use_billing', hidden: true

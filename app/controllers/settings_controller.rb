@@ -9,15 +9,8 @@ class SettingsController < ApplicationController
   end
 
   def create
-    @addresses = AddressesForm.new(addresses_params)
+    @addresses = AddressesForm.new(params)
     status = @addresses.save ? :created : :unprocessable_entity
     render json: @addresses.errors, callback: 'parse_errors', status: status
-  end
-
-  private
-
-  def addresses_params
-    %i[shipping billing].each { |type| params[type][:user_id] = current_user.id }
-    params
   end
 end

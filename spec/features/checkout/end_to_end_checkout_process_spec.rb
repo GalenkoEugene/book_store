@@ -20,7 +20,7 @@ RSpec.feature 'End to end checkout process', type: :feature do
     find(shopping_cart_icon).click
     expect(page.current_path).to eq cart_path
     click_on 'Checkout'
-    expect(page.current_path).to eq checkout_path(:address)
+    expect(page.current_path).to eq checkout_path(:addresses)
 
     within('form#addresses') do
       fill_in '[billing][first_name]', with: 'Monica'
