@@ -1,10 +1,7 @@
 # frozen_string_literal: true
 
-class SettingsController < ApplicationController
-  before_action :authenticate_user!
-  include OutsideDevise
-
-  def new
+class AddressesController < ApplicationController
+  def index
     @addresses = AddressesForm.new(user_id: current_user.id)
   end
 

@@ -1,5 +1,5 @@
-#address.general-main-wrap.tab-pane.fade.in.active{role: "tabpanel"}
-  = form_with url: settings_path, id: 'addresses' do |f|
+#addres.general-main-wrap.tab-pane.fade.in.active{role: "tabpanel"}
+  = form_with url: settings_addresses_path, id: 'addresses' do |f|
     .hidden-xs.hidden-sm
       .row
         .col-md-5
@@ -18,7 +18,7 @@
           %h3.general-subtitle.mt-0= t('settings.shipping')
         = f.fields_for @addresses.shipping do |ff|
           = render 'shared/address', ff: ff
-          = f.hidden_field "[billing][userr_id]", value: current_user.id
+          = f.hidden_field "[shipping][user_id]", value: current_user.id
         .form-group.checkbox
           %label.checkbox-label
             = f.check_box :use_billing, class: 'checkbox-input', id: 'use_billing', hidden: true

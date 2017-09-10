@@ -11,12 +11,18 @@ Rails.application.routes.draw do
   match '/home', to: 'home#index', via: 'get'
   devise_for :users,  controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   resources :users, only: [:update]
-  resources :settings
   resources :reviews, only: :create
   resources :orders
   resources :checkout
   resources :credit_card
+
   resources :users do
     put 'update_password', on: :member
   end
+
+  match 'settings/addresses', to: 'addresses#index', via: 'get'
+  match 'settings/addresses', to: 'addresses#create', via: 'post'
+
+  match 'settings/privacy', to: 'users#index', via: 'get'
+  match 'settings/privacy', to: 'users#update', via: 'post'
 end

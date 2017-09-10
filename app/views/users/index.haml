@@ -2,10 +2,10 @@
   %h1.general-title-margin= t('settings.settings')
   %ul.nav.clearfix.mb-20{role: "tablist"}
     %li.tab-item{role: "presentation"}
-      = link_to t('settings.address'), new_setting_path, class: 'tab-link'
+      = link_to t('settings.address'), settings_addresses_path, class: 'tab-link'
     %li.tab-item{role: "presentation"}
-      = link_to t('settings.privacy'), settings_path, class: 'tab-link filter-link active'
-  .tab-content  
+      = link_to t('settings.privacy'), settings_privacy_path, class: 'tab-link filter-link active'
+  .tab-content
     .row.mb-60
       .col-sm-5
         = render 'settings/edit_email'

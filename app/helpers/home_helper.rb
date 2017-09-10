@@ -13,7 +13,7 @@ module HomeHelper
         "<a aria-expanded='false' aria-haspopup='true' class='dropdown-toggle' data-toggle='dropdown' href='#' role='button'>#{t('button.my_account')}</a>"\
         "<ul class='dropdown-menu'>" +
           li(link_to t('button.orders'), orders_path, class: 'collapse-link') +
-          li(link_to t('button.settings'), new_setting_path, class: 'collapse-link') +
+          li(link_to t('button.settings'), settings_addresses_path, class: 'collapse-link') +
           log_out_helper +
         "</ul>"
       my_account.html_safe

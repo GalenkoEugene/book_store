@@ -2,6 +2,7 @@
 
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  include OutsideDevise
 
   def update
     if current_user.update_attributes(users_params)

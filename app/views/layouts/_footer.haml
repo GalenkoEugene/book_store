@@ -10,7 +10,7 @@
           %li
             = link_to t('button.orders'), orders_path, class: 'nav-link' if user_signed_in?
           %li
-            = link_to t('button.settings'), new_setting_path, class: 'nav-link' if user_signed_in?
+            = link_to t('button.settings'), settings_privacy_path, class: 'nav-link' if user_signed_in?
       .col-sm-3
         %p.general-nav-mail support@bookstore.com
         %p.general-nav-number (555)-555-5555

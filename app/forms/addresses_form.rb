@@ -4,7 +4,7 @@ class AddressesForm
   include ActiveModel::Model
   include Virtus.model
 
-  attr_reader :params, :target
+  attr_reader :params, :target, :use_billing
 
   def initialize(params = false)
     @save = false
