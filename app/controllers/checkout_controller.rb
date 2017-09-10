@@ -21,6 +21,7 @@ class CheckoutController < ApplicationController
       @credit_card = current_order.credit_card || CreditCard.new
     when :confirm
       jump_to(previous_step) unless current_order.credit_card
+      @addresses = AddressesForm.new(show_addresses_params)
     when :complete
       jump_to(previous_step) unless flash[:complete_order]
       @order = current_user.orders.processing_order.decorate

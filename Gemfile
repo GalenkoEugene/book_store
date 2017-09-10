@@ -65,6 +65,7 @@ group :test do
   gem 'ffaker', '~> 2.6.0'
   gem 'shoulda-callback-matchers', '~> 1.1.4'
   gem 'shoulda-matchers', '~> 3.1.2'
+  gem 'transactional_capybara', '0.2.0'
 end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

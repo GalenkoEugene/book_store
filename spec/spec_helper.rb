@@ -2,8 +2,10 @@
 
 require 'capybara/rspec'
 require 'capybara/webkit/matchers'
+require "transactional_capybara/rspec"
 require 'factory_girl_rails'
 Capybara.javascript_driver = :webkit
+Capybara.default_max_wait_time = 5
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|

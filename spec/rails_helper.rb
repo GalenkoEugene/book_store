@@ -21,6 +21,7 @@ end
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
+  config.include TransactionalCapybara::AjaxHelpers
   config.use_transactional_fixtures = true
   # https://relishapp.com/rspec/rspec-rails/docs
   # Warden.test_mode!
@@ -31,11 +32,13 @@ RSpec.configure do |config|
   config.extend ControllerMacros, type: :controller
   # config.include Devise::Test::ControllerHelpers, type: :view
   # config.include Warden::Test::Helpers
-  # config.include DeviseRequestSpecHelpers, type: :request
+  config.include Devise::Test::IntegrationHelpers, type: :feature
+  config.include DeviseRequestSpecHelpers, type: :feature
   config.include FormHelpers, type: :feature
   config.include Features::SessionHelpers, type: :feature
   config.include Capybara::Webkit::RspecMatchers, type: :feature
   config.include InjectSession, type: :feature
+  config.include WaitForAjax, type: :feature
   config.include RedirectBack
   config.include Selectors
 end
