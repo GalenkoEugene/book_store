@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  attr_accessor :skip_password_validation
   devise :database_authenticatable,
          :registerable,
          :recoverable,
@@ -14,7 +15,7 @@ class User < ApplicationRecord
   }
   validates :password, format: {
     with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)\S{8,}\z/
-  }
+  }, unless: :skip_password_validation
 
   has_many :reviews
   has_many :addresses

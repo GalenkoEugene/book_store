@@ -10,15 +10,11 @@ Rails.application.routes.draw do
   match '/catalog', to: 'books#index', via: 'get'
   match '/home', to: 'home#index', via: 'get'
   devise_for :users,  controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
-  resources :users, only: [:update]
+  resources :users, only: %i[update destroy]
   resources :reviews, only: :create
   resources :orders
   resources :checkout
   resources :credit_card
-
-  resources :users do
-    put 'update_password', on: :member
-  end
 
   match 'settings/addresses', to: 'addresses#index', via: 'get'
   match 'settings/addresses', to: 'addresses#create', via: 'post'

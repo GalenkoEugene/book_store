@@ -5,22 +5,38 @@ class UsersController < ApplicationController
   include OutsideDevise
 
   def update
-    if current_user.update_attributes(users_params)
-      flash[:success] = t('user.seccess_updating_email')
-    else
-      flash[:danger] = t('review.smth_went_wrong')
-    end
-    redirect_back(fallback_location: root_path)
-  end
+    change_password = true
 
-  def update_password
-    return update if current_user.valid_password?(params[:user][:current_password])
-    redirect_to settings_path(current_user), notice: t('notice.wrong_password')
+    if params[:user][:update_email]
+      params[:user].delete('password')
+      params[:user].delete('password_confirmation')
+      change_password = false
+    end
+
+    @user = User.find(current_user.id)
+
+    if change_password
+      is_valid = @user.update_with_password(password_params)
+    else
+      @user.skip_password_validation = true
+      is_valid = @user.update_without_password(email_params)
+    end
+
+    if is_valid
+      bypass_sign_in @user, scope: :user
+      redirect_to settings_privacy_path, notice: t('user.updated')
+    else
+      redirect_to settings_privacy_path, danger: @user.errors.full_messages.to_sentence
+    end
   end
 
   private
 
-  def users_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+  def password_params
+    params.require(:user).permit(:current_password, :password, :password_confirmation)
+  end
+
+  def email_params
+    params.require(:user).permit(:email)
   end
 end

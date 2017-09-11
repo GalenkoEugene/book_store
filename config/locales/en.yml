@@ -110,6 +110,7 @@ en:
     country_select: 'Select a country'
   user:
     seccess_updating_email: 'E-mail was successfully updated.'
+    updated: 'Data was successfully updated'
   order:
     my_orders: 'My Orders'
     number: 'Number'
