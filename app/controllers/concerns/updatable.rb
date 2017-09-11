@@ -8,7 +8,7 @@ module Updatable
 
     def update_addresses
       @addresses = AddressesForm.new(addresses_params)
-      return render_wizard(@addresses) unless @addresses.save
+      render_wizard unless @addresses.save
     end
 
     def update_delivery
@@ -18,7 +18,7 @@ module Updatable
 
     def update_payment
       @credit_card = CreditCard.new(credit_card_params)
-      return render_wizard(@credit_card) unless @credit_card.save
+      render_wizard unless @credit_card.save
     end
 
     def update_confirm
