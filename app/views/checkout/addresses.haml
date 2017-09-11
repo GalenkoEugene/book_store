@@ -1,6 +1,6 @@
 %main.container
   = render 'checkout/progress'
-  = form_with url: wizard_path, method: :put, id: 'addresses', class: 'res-mb-100' do |f|
+  = form_for @addresses, url: wizard_path, method: :put, class: 'res-mb-100' do |f|
     .hidden-xs.hidden-sm
       .row
         .col-md-5

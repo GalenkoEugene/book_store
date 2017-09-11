@@ -4,7 +4,6 @@ module Showable
   extend ActiveSupport::Concern
 
   included do
-
     private
 
     def show_login
