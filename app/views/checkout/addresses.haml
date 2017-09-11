@@ -14,13 +14,15 @@
           %h3.general-subtitle= t('settings.billing')
           %p.general-info-text all fields are required
         = f.fields_for @addresses.billing do |ff|
-          = render 'shared/address', ff: ff
+          - bill_errors = @addresses.billing.errors
+          = render 'shared/address', ff: ff, errors: bill_errors
           = f.hidden_field "[billing][order_id]", value: current_order.id
       .col-md-5.col-md-offset-1.mb-60
         .visible-xs.visible-sm
           %h3.general-subtitle= t('settings.shipping')
         = f.fields_for @addresses.shipping do |ff|
-          = render 'shared/address', ff: ff
+          - ship_errors = @addresses.shipping.errors
+          = render 'shared/address', ff: ff, errors: ship_errors
           = f.hidden_field "[shipping][order_id]", value: current_order.id
         .form-group.checkbox
           %label.checkbox-label

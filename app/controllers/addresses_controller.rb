@@ -6,8 +6,14 @@ class AddressesController < ApplicationController
   end
 
   def create
-    @addresses = AddressesForm.new(params)
-    status = @addresses.save ? :created : :unprocessable_entity
-    render json: @addresses.errors, callback: 'parse_errors', status: status
+    @addresses = AddressesForm.new(addresses_params)
+    status = @addresses.save ? :created : :found
+    render :index, object: @addresses.errors
+  end
+
+  private
+
+  def addresses_params
+    params.require(:addresses_form)
   end
 end

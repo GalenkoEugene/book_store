@@ -24,5 +24,5 @@ Rails.application.routes.draw do
   match 'settings/addresses', to: 'addresses#create', via: 'post'
 
   match 'settings/privacy', to: 'users#index', via: 'get'
-  match 'settings/privacy', to: 'users#update', via: 'post'
+  match 'settings/privacy', to: 'users#update', via: 'put'
 end
