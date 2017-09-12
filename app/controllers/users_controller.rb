@@ -7,14 +7,12 @@ class UsersController < ApplicationController
 
   def update
     change_password = true
-
+    @user = User.find(current_user.id)
     if params[:user][:update_email]
       params[:user].delete('password')
       params[:user].delete('password_confirmation')
       change_password = false
     end
-
-    @user = User.find(current_user.id)
 
     if change_password
       is_valid = @user.update_with_password(password_params)

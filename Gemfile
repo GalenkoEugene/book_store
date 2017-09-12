@@ -62,6 +62,7 @@ group :test do
   gem 'capybara-webkit'
   gem 'database_cleaner'
   gem 'ffaker', '~> 2.6.0'
+  gem 'rails-controller-testing', '~> 1.0.2'
   gem 'shoulda-callback-matchers', '~> 1.1.4'
   gem 'shoulda-matchers', '~> 3.1.2'
   gem 'transactional_capybara', '0.2.0'

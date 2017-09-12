@@ -10,7 +10,7 @@ RSpec.describe ReviewsController, type: :controller do
     end
 
     it 'sends error flash' do
-      post :create, xhr: true, params: { review: review_params }
+      post :create, params: { review: review_params }
       expect(flash[:danger]).to eq I18n.t('review.smth_went_wrong')
     end
   end
@@ -21,7 +21,7 @@ RSpec.describe ReviewsController, type: :controller do
     end
 
     it 'sends success flash' do
-      post :create, xhr: true, params: { review: review_params }
+      post :create, params: { review: review_params }
       expect(flash[:success]).to eq I18n.t('review.thanks_message')
     end
   end
