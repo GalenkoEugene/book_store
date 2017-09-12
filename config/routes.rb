@@ -15,7 +15,7 @@ Rails.application.routes.draw do
    }
   resources :users, only: %i[update destroy]
   resources :reviews, only: :create
-  resources :orders
+  resources :orders, only: %i[index show]
   resources :checkout
   resources :credit_card
 

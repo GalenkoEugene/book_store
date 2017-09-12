@@ -2,13 +2,20 @@
 
 class OrdersController < ApplicationController
   load_and_authorize_resource
+
   def index
-    @orders = OrdersQuery.new(current_user.orders).run(params[:filter]).decorate
+    @orders = OrdersQuery.new(personal_orders).run(params[:filter]).decorate
   end
 
   def show
-    @order = current_user.orders.find(params[:id]).decorate
-    redirect_to checkout_path(:payment) unless @order.credit_card
+    @order = personal_orders.find(params[:id]).decorate
+    redirect_to checkout_path(:confirm) if @order.status == t('order.status.in_progress')
+  end
+
+  private
+
+  def personal_orders
+    Order.includes(:delivery, :order_status, :order_items).accessible_by(current_ability)
   end
 end
 
