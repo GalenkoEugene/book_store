@@ -21,7 +21,6 @@ module CurrentSession
   end
 
   def current_order
-    order_id = current_user ? current_user.order_in_progress&.id : session[:order_id]
     @current_order ||= Order.find_or_initialize_by(id: order_id).decorate
   end
 
@@ -36,5 +35,11 @@ module CurrentSession
     session[:previous_request_url] = session[:current_request_url]
     session[:current_request_url] = request.path if request.path.match /\/(catalog|home|cart|checkout|orders)/
     @back = session[:previous_request_url]
+  end
+
+  private
+
+  def order_id
+    current_user ? current_user.order_in_progress&.id : session[:order_id]
   end
 end
