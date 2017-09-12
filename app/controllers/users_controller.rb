@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 
     if is_valid
       bypass_sign_in @user, scope: :user
-      redirect_to settings_privacy_path, notice: t('user.updated')
+      redirect_to settings_privacy_path, success: t('user.updated')
     else
       redirect_to settings_privacy_path, danger: @user.errors.full_messages.to_sentence
     end
