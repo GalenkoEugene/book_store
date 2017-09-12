@@ -9,10 +9,13 @@ class Ability
       can :read, Review, status: true
       can :read, Order, user_id: user.id
       can :create, Review
-      can %i[create update], [Order, OrderItem, Address, CreditCard], user_id: user.id
+      can %i[create update], [Order, Address, CreditCard], user_id: user.id
+      can :manage, OrderItem
+      can :manage, User, id: user.id
     else
       can :read, [Review, Book, Image]
-      can %i[create read update], Order, OrderItem
+      can %i[create read update], Order
+      can :manage, OrderItem
     end
   end
 end
