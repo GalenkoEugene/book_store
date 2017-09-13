@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :order_status do
-    sequence(:name)
+    sequence(:name) { |i| "status_#{i}" }
 
     trait :delivered do
       name 'delivered'
