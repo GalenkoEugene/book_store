@@ -7,6 +7,10 @@ machine:
       AWS_ACCESS_KEY_ID: 'secret id is here'
       AWS_SECRET_ACCESS_KEY: 'secret access key is here'
       S3_BUCKET_NAME: 'bucket name is here'
+      SMTP_PORT: 'smtp pert'
+      SMTP_ADDRESS: 'gmail address'
+      SMTP_USER_NAME: 'my name here'
+      SMTP_PASSWORD: 'my password here'
 
 dependencies:
   pre:
