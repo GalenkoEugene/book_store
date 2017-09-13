@@ -5,6 +5,7 @@ FactoryGirl.define do
     order_status
     user
     delivery
+    credit_card_id nil
 
     trait :in_progress do
       after(:create) do |order|
