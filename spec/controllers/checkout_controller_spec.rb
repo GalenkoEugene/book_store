@@ -99,7 +99,7 @@ RSpec.describe CheckoutController, type: :controller do
     describe 'addresses' do
       before do
         allow(AddressesForm).to receive(:new) { FactoryGirl.build(:address) }
-        put :update, xhr: true, params: { id: :addresses, addresses_form: true }
+        put :update, params: { id: :addresses, addresses_form: true }
       end
 
       it 'assign @addresses' do
