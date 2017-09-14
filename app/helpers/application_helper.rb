@@ -30,7 +30,9 @@ module ApplicationHelper
         lax_html_blocks: true,
         strikethrough: true,
         superscript: true,
-        space_after_headers: true
+        space_after_headers: true,
+        highlight: true,
+        underline: true
     }
     Redcarpet::Markdown.new(renderer, options).render(text).html_safe
   end
