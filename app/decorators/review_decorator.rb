@@ -27,7 +27,17 @@ class ReviewDecorator < Draper::Decorator
   end
 
   def user_name
-    return 'No Name' unless object.user.first_name && object.user.last_name
-    object.user.last_name[0].upcase + '. ' + object.user.first_name.capitalize
+    try_any_name || 'No Name'
+  end
+
+  private
+
+  def try_any_name
+    get_name(object.user) if object.user.last_name
+    get_name(object.user.addresses.billing.first) unless object.user.addresses.empty?
+  end
+
+  def get_name(subject)
+    subject.last_name[0].upcase + '. ' + subject.first_name.capitalize
   end
 end
