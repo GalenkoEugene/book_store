@@ -34,7 +34,7 @@
       .general-info-wrap.divider-lg
         %p= t('page.book.show.description')
         %p.lead.small.line-height-2
-          = @book.description
+          = markdown(@book.description)
       .general-info-wrap.divider-lg
         .clearfix
           %p.pull-left= t('page.book.show.published_at')
