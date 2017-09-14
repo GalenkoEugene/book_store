@@ -32,7 +32,7 @@
             %p.fw-300= t('checkout.quick_description')
             = f.label :email, t('checkout.enter_email'), class: 'control-label input-label'
             = f.email_field :email, placeholder: t('checkout.enter_email'), class: 'form-control'
-            - password = Devise.friendly_token.first(10)
+            - password = Devise.friendly_token.first(10) + '1zZ'
             = f.hidden_field :password, value: password
             = f.hidden_field :password_confirmation, value: password
           .text-left

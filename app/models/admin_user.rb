@@ -6,6 +6,5 @@ class AdminUser < ApplicationRecord
          :rememberable,
          :trackable,
          :validatable,
-         :registerable,
-         :confirmable
+         :registerable
 end

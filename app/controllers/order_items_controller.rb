@@ -2,21 +2,18 @@
 
 class OrderItemsController < ApplicationController
   load_and_authorize_resource
+
   def create
     @order_item = current_order.order_items.find_or_initialize_by(book_id: order_item_params[:book_id])
-    update_quantity.save
-    current_order.save
-    session[:order_id] = current_order.id
+    session[:order_id] = current_order.id if update_quantity.save
   end
 
   def update
-    @order_item = current_order.order_items.find(params[:id])
     @order_item.update_attributes(order_item_params)
     @order_items = current_order.order_items
   end
 
   def destroy
-    @order_item = current_order.order_items.find(params[:id])
     @order_item.destroy
     @order_items = current_order.order_items
   end
