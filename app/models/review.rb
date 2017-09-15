@@ -14,4 +14,12 @@ class Review < ApplicationRecord
   validates :context, format: { with: /\A[a-zA-Z\d\s]+[-!#$%&'*+\/=?^_`{|}~.,]?[a-zA-Z\d\s]*\z/ }
 
   scope :approved, -> { where(status: true) }
+
+  def approve!
+    update(status: true)
+  end
+
+  def reject!
+    update(status: false)
+  end
 end
