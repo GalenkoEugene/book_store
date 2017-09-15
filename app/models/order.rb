@@ -15,6 +15,7 @@ class Order < ApplicationRecord
   before_save :update_subtotal, :update_total, :connect_to_user
 
   scope :where_status, -> (status_name) { joins(:order_status).where(order_statuses: { name: status_name }) }
+  scope :processing_list, -> { joins(:order_status).where(order_statuses: { name: %i[in_queue in_progress in_delivery] }) }
   scope :processing_order, -> { where_status('in_queue').order('updated_at').last }
   scope :in_progress, -> { where_status('in_progress').first.try(:id) }
 

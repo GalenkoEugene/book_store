@@ -1,4 +1,5 @@
 ActiveAdmin.register Book do
+  active_admin_importable
   includes :authors, :category, :images
   permit_params :id, :category_id, :title, :price, :description, :materials, :height, :weight, :depth, :published_at, :active, author_ids: []
   form partial: 'form'
@@ -13,7 +14,9 @@ ActiveAdmin.register Book do
     column :title
     column('Authors') { |book| authors_to_list(book) }
     column('Description') { |book| truncate(book.description, length: 75) }
-    column :price
+    column :price do |book|
+      number_to_currency book.price
+    end
     column '' do |book|
       (link_to 'View', edit_admin_book_path(book)) + ' - ' +
       (link_to 'Delete', admin_book_path(book), method: :delete,
@@ -64,4 +67,6 @@ ActiveAdmin.register Book do
   show do
     render 'admin/books/form', book: book
   end
+
+  # filter :authors_name, as: :select, collection: Author.all
 end

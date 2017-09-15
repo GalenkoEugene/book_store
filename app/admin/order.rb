@@ -2,6 +2,19 @@ ActiveAdmin.register Order do
   includes :coupon, :order_status
   permit_params :order_status_id, :coupon
   filter :order_status
+
+  scope :in_progress, default: true do |tasks|
+    tasks.processing_list
+  end
+
+  scope :delivered do |tasks|
+    tasks.where_status(:delivered)
+  end
+
+  scope :canceled do |tasks|
+    tasks.where_status(:canceled)
+  end
+
   index do
     column('Number') { |order| order.id }
     column('Date of creation') { |order| order.created_at }
@@ -11,8 +24,7 @@ ActiveAdmin.register Order do
 
   form title: 'edit' do |f|
     inputs 'Details' do
-      input :order_status, as: :select, collection: OrderStatus.pluck(:name, :id)
-        .select { |a| a unless %w[in_progress in_queue].include? a.first }, include_blank: false
+      input :order_status, as: :select, collection: OrderStatus.pluck(:name, :id), include_blank: false
       h3 li "Current status: #{f.order.order_status.name}" unless f.order.new_record?
     end
     panel'Conditions:' do
@@ -28,6 +40,4 @@ ActiveAdmin.register Order do
     para 'Press cancel to return to the list without saving.'
     actions
   end
-
-
 end

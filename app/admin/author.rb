@@ -1,6 +1,7 @@
 ActiveAdmin.register Author do
+  active_admin_importable
   permit_params :name
-  includes :books
+  includes :author_books, :books
 
   index do
     selectable_column
@@ -15,4 +16,7 @@ ActiveAdmin.register Author do
         })
     end
   end
+
+  filter :name, as: :select
+  filter :books_title, as: :select, collection: Book.all
 end

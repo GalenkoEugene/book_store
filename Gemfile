@@ -8,6 +8,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 gem 'activeadmin', github: 'activeadmin'
+gem 'active_admin_importable', '~> 1.1.2'
 gem 'bootstrap-sass', '3.3.7'
 gem 'cancancan', '~> 2.0'
 gem 'carrierwave', '~> 1.0'
