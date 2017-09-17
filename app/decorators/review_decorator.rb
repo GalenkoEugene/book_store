@@ -30,6 +30,14 @@ class ReviewDecorator < Draper::Decorator
     try_any_name || 'No Name'
   end
 
+  def status_name
+    if object.status
+      I18n.t('admin.review.approved')
+    else
+      object.status.nil? ? I18n.t('admin.review.unprocessed') : I18n.t('admin.review.rejected')
+    end
+  end
+
   private
 
   def try_any_name

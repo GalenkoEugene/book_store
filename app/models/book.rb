@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
 class Book < ApplicationRecord
-  before_destroy :break_if_many_authors
-
   has_many :author_books, dependent: :destroy
   has_many :authors, through: :author_books
-  has_many :order_items
+  has_many :order_items, dependent: :nullify
   has_many :reviews, dependent: :destroy
   belongs_to :category
   has_many :images, dependent: :destroy
@@ -35,9 +33,5 @@ class Book < ApplicationRecord
 
   def self.by_category(cat_id)
     cat_id ? where('category_id = ?', cat_id) : unscoped
-  end
-
-  def break_if_many_authors
-    throw :abort if self.authors.size > 1
   end
 end

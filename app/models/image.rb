@@ -1,5 +1,5 @@
 class Image < ApplicationRecord
-  mount_uploader :images, ImagesUploader
+  mount_uploader :file, ImagesUploader
   belongs_to :book
   validates :file, presence: true
   validates_format_of :file, {

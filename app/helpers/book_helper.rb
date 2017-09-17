@@ -29,7 +29,7 @@ module BookHelper
   end
 
   def img_of(book)
-    book.images&.first&.file || default_image
+    book.images&.last&.file || default_image
   end
 
   def go_back

@@ -15,6 +15,10 @@ class ImagesUploader < CarrierWave::Uploader::Base
     "#{Rails.root}/tmp/cache/images"
   end
 
+  version :thumb do
+    process resize_to_limit: [50, 60]
+  end
+
   version :catalog_size do
     process resize_to_limit: [160, 250]
   end
@@ -32,6 +36,22 @@ class ImagesUploader < CarrierWave::Uploader::Base
   end
 
   def filename
-    "#{SecureRandom.uuid}.#{file.extension}" if original_filename.present?
+    "#{secure_token}.#{file.extension}" if original_filename.present?
+  end
+
+  def secure_token
+    media_filenames = :"@#{mounted_as}_original_filenames"
+
+    unless model.instance_variable_get(media_filenames)
+      model.instance_variable_set(media_filenames, {})
+    end
+
+    unless model.instance_variable_get(media_filenames).map{|k,v| k }.include? original_filename.to_sym
+      new_value = model.instance_variable_get(media_filenames)
+        .merge({"#{original_filename}": SecureRandom.uuid})
+      model.instance_variable_set(media_filenames, new_value)
+    end
+
+    model.instance_variable_get(media_filenames)[original_filename.to_sym]
   end
 end
