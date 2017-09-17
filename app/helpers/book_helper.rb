@@ -29,7 +29,18 @@ module BookHelper
   end
 
   def img_of(book)
-    book.images&.last&.file || default_image
+    return default_image unless book.images.any?
+    book.images.last.file.catalog_size.url || default_image
+  end
+
+  def view_img(book, identifier = :first)
+    return default_image unless book.images.any?
+    book.images.send(identifier).file.view_size.url
+  end
+
+  def carousel_img(book)
+    return default_image unless book.images.any?
+    book.images.last.file.slider_size.url
   end
 
   def go_back

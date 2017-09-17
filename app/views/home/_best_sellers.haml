@@ -4,7 +4,7 @@
     .col-sm-6.col-md-3
       .general-thumb-wrap
         .thumbnail.general-thumbnail
-          %img.img-shadow.general-thumbnail-img{src: "http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
+          = image_tag img_of(book), alt: book.title, class: 'img-shadow general-thumbnail-img'
           .thumb-hover
             .general-thumb-link-wrap
               = link_to book_path(book), class: 'thumb-hover-link' do

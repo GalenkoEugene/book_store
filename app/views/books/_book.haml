@@ -1,12 +1,12 @@
 .col-xs-6.col-sm-3
   .general-thumb-wrap
     .thumbnail.general-thumbnail
-      = image_tag img_of(book) , alt: 'design-book', class: 'img-shadow general-thumbnail-img'
+      = image_tag img_of(book), alt: 'design-book', class: 'img-shadow general-thumbnail-img'
       .thumb-hover
         .general-thumb-link-wrap
           = link_to book_path(book), class: 'thumb-hover-link' do
             %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
-          - target = book.active ? { order_item: {quantity: 1, book_id: book.id}} : '#' 
+          - target = book.active ? { order_item: {quantity: 1, book_id: book.id}} : '#'
           = link_to order_items_path(target), { method: :post, remote: true, class: 'thumb-hover-link' } do
             %i.fa.fa-shopping-cart.thumb-icon
   .general-thumb-info

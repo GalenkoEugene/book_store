@@ -48,7 +48,7 @@ class ReviewDecorator < Draper::Decorator
   private
 
   def try_any_name
-    get_name(object.user) if object.user.last_name
+    return get_name(object.user) if object.user.last_name
     get_name(object.user.addresses.billing.first) unless object.user.addresses.empty?
   end
 
