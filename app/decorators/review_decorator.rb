@@ -38,6 +38,13 @@ class ReviewDecorator < Draper::Decorator
     end
   end
 
+  def verified?
+    OrderItem.where(
+      book_id: object.book_id,
+      order_id: object.user.orders.where_status(:delivered).ids
+    ).any?
+  end
+
   private
 
   def try_any_name
