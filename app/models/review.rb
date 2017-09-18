@@ -13,7 +13,7 @@ class Review < ApplicationRecord
                   }
   validates :context, format: { with: /\A[a-zA-Z\d\s]+[-!#$%&'*+\/=?^_`{|}~.,]?[a-zA-Z\d\s]*\z/ }
 
-  scope :approved, -> { where(status: true) }
+  scope :approved, -> { where(status: true).order(created_at: :desc) }
 
   def approve!
     update(status: true)

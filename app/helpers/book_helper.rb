@@ -1,7 +1,6 @@
 module BookHelper
   def dimension_for(book)
-    "H:#{book.height}\" x W:#{book.weight}\"" \
-    " x D:#{book.depth}\", where ” - inches"
+    "H:#{book.height}\" x W:#{book.weight}\" x D:#{book.depth}\""
   end
 
   def group_by4in_row(books)

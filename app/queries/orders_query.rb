@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# filter for books
+# filter for orders
 class OrdersQuery
   attr_reader :relation
 

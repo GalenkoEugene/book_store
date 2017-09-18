@@ -2,6 +2,7 @@
 
 class ReviewsController < ApplicationController
   load_and_authorize_resource
+
   def create
     @review = Review.new(review_params)
     @review.save ? flash[:success] = t('review.thanks_message') : flash[:danger] = t('review.smth_went_wrong')

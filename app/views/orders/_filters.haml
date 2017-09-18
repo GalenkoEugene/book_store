@@ -11,4 +11,6 @@
   %li
     = link_to t('order.status.delivered'), orders_path(filter: :delivered)
   %li
+    = link_to t('order.status.canceled'), orders_path(filter: :canceled)
+  %li
     = link_to t('order.status.all'), orders_path
