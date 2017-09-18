@@ -3,6 +3,8 @@
 class OrderItem < ApplicationRecord
   belongs_to :book
   belongs_to :order
+  has_one :order_status, through: :order
+  has_one :category, through: :book
 
   validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validate :book_present

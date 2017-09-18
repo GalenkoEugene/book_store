@@ -1,15 +1,17 @@
 FactoryGirl.define do
   factory :order_item do
-    book
+    transient do
+      book
+    end
     order
     unit_price 1.0
     quantity 1
     total_price 1.0
 
     factory :order_item_with_delivered_book do
-      after(:create) do |order_item, _evaluator|
-        order_item.order_id= FactoryGirl.create(:order, :delivered).id
-        order_item.save
+      before(:create) do |order_item, evaluator|
+        order_item.book= evaluator.book if evaluator.book
+        order_item.order= FactoryGirl.create(:order, :delivered)
       end
     end
   end

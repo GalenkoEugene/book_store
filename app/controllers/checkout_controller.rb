@@ -10,7 +10,7 @@ class CheckoutController < ApplicationController
 
   def show
     return redirect_to catalog_path if no_items_in_cart?
-    send("show_#{step}") unless step == :wicked_finish
+    send("show_#{step}") unless step == 'wicked_finish'
     render_wizard
   end
 

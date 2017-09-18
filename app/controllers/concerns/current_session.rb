@@ -21,7 +21,7 @@ module CurrentSession
   end
 
   def current_order
-    @current_order ||= Order.find_or_create_by(id: order_id).decorate
+    @current_order ||= Order.find_or_initialize_by(id: order_id).decorate
   end
 
   def set_current_user
