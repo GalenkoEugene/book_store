@@ -26,7 +26,7 @@ $(document).ready(function() {
     function add_read_more_button(data){
         var showChar = 300;  // How many characters are shown
 
-        $('p.lead.small.line-height-2').each(function() {
+        $('div.lead.small.line-height-2>p').each(function() {
             var content = $(this).html();
             if(content.length > showChar) {
                 var c = content.substr(0, showChar);

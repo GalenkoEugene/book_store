@@ -1,7 +1,8 @@
 ActiveAdmin.register Book do
   active_admin_importable
   includes :authors, :category, :images
-  permit_params :id, :category_id, :title, :price, :description, :materials, :height, :weight, :depth, :published_at, :active, author_ids: []
+  permit_params :id, :category_id, :title, :price, :description, :materials, :height, :weight, :depth, :published_at, :active, author_ids: [], images_attributes: [:id, :file, :book_id, :_destroy]
+
 
   index do
     selectable_column
@@ -38,28 +39,11 @@ ActiveAdmin.register Book do
       f.input :weight
       f.input :depth
       f.input :published_at
-      hint = f.object.images.map { |i| image_tag(i.file.thumb.url) }
-        .join.html_safe if f.object.images
-      f.input :images, as: :file, required: true,
-        input_html: { multiple: true}, hint: hint
+      f.has_many :images, allow_destroy: true do |img|
+        img.input :file, as: :file, hint:
+          (image_tag(img.object.file.thumb.url) if img.object.file.present?)
+      end
     end
     f.actions
-  end
-
-  controller do
-    def update(options = {}, &block)
-      if params[:book].key?(:images)
-        params[:book][:images].each do |img|
-          @model = Book.find(params[:id]).images.new
-          @model.file.store!(img)
-          @model.save!
-        end
-      end
-
-      super do |success, failure|
-        block.call(success, failure) if block
-        render :edit and return
-      end
-    end
   end
 end

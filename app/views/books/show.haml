@@ -33,7 +33,7 @@
             = f.submit t('button.add_to_cart'), class: 'btn btn-default pull-right general-position', disabled: !@book.active
       .general-info-wrap.divider-lg
         %p= t('page.book.show.description')
-        %p.lead.small.line-height-2
+        .lead.small.line-height-2
           = markdown(@book.description)
       .general-info-wrap.divider-lg
         .clearfix

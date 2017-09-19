@@ -24,6 +24,8 @@ class Book < ApplicationRecord
   validates_length_of :materials, maximum: 80
   validates_length_of :description, in: 5..2000
 
+  accepts_nested_attributes_for :images, allow_destroy: true
+
   scope :best_sellers, -> { sold_books.group_by(&:type_of).each_value{ |v| v.max_by(&:summed_items) }.map{ |_, v| v.first } }
 
   def self.by_category(cat_id)
