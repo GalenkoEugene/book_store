@@ -7,7 +7,7 @@ ActiveAdmin.register Book do
   index do
     selectable_column
     column I18n.t('admin.book.image') do |book|
-      image_tag(book.images.last&.file&.thumb&.url || 'sample.jpg', size: '50x60')
+      image_tag(book.images.first&.file&.thumb&.url || 'sample.jpg', size: '50x60')
     end
     column(I18n.t('admin.book.category')) { |book| book.category&.type_of }
     column :title
