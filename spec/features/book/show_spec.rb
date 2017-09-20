@@ -32,14 +32,14 @@ RSpec.feature 'Book page', type: :feature do
     end
   end
 
-  # context 'long description' do
-  #   it "'Read More' button present", js: true do
-  #     @book.description= 'text ' * 400
-  #     @book.save!
-  #     visit book_path(@book)
-  #     expect(page).to have_content 'Read More'
-  #   end
-  # end
+  context 'long description' do
+    it "'Read More' button present", js: true do
+      @book.description= 'text ' * 400
+      @book.save!
+      visit book_path(@book)
+      expect(page).to have_content 'Read More'
+    end
+  end
 
   describe 'Add to Cart' do
     let(:shop_icon) { page.find('a.hidden-xs>span.shop-icon') }

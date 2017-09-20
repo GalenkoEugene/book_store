@@ -43,6 +43,7 @@ class Book < ApplicationRecord
       INNER JOIN categories ON categories.id = books.category_id
       WHERE order_statuses.name = 'delivered'
       GROUP BY books.id, categories.type_of
-      ORDER BY summed_items DESC")
+      ORDER BY summed_items DESC
+      LIMIT 7")
   end
 end
