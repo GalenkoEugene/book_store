@@ -16,7 +16,7 @@ class BooksQuery
     when 'price_down' then price_down
     when 'a_z' then title_a_z
     when 'z_a' then title_z_a
-    else relation
+    else newest
     end
   end
 
@@ -27,7 +27,10 @@ class BooksQuery
   end
 
   def popular
-    relation.order(price: :asc) # temporary solution
+    relation.left_outer_joins(orders: [:order_items])
+      .includes(:authors)
+      .group(:id)
+      .order('SUM(order_items.quantity)')
   end
 
   def price_up

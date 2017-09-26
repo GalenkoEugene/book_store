@@ -42,6 +42,14 @@ module BookHelper
     book.images.first.file.slider_size.url
   end
 
+  def small_images(book)
+    return unless book.images[1]
+    book.images[1..3].map do |image|
+      "<a class='img-link' href='#'>\
+      #{image_tag(image.file.view_size.url , alt: book.title)} </a>"
+    end.join.html_safe
+  end
+
   def go_back
     @back || :back
   end

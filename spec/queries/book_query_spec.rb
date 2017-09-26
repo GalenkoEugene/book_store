@@ -13,7 +13,7 @@ RSpec.describe BooksQuery, type: :model do
   end
 
   it 'return self if no matches' do
-    expect(subject.run('bla bla bla..')).to eq Book.all
+    expect(subject.run('bla bla bla..')).to match_array Book.all
   end
 
   %w[newest popular price_up price_down].each do |method|

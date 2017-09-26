@@ -39,10 +39,6 @@ RSpec.describe OrdersController, type: :controller do
       let(:order_in_progress) {  FactoryGirl.create(:order, :in_progress, user_id: user.id) }
       before { get :show, params: { id: order_in_progress.id } }
 
-      it 'redirect to checkout' do
-        expect(response).to redirect_to checkout_path(:confirm)
-      end
-
       it 'return redirect status code' do
         expect(response).to have_http_status(:found)
       end
