@@ -30,20 +30,10 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'virtus'
 gem 'wicked'
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
-
 gem 'coffee-rails', '~> 4.2'
 gem 'haml-rails' # rake haml:erb2haml
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails', '4.3.1'
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 3.0'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
 
 group :development, :test do
   gem 'factory_girl_rails', '~> 4.8.0'
